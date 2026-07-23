@@ -24,13 +24,14 @@ document.querySelectorAll("[data-tex]").forEach(el=>{
 });
 
 /* ===== recetas 3x3 ===== */
-const P="oak_planks", R="stick", C="cobblestone", H="i_stone_hammer", _=null;
+const P="oak_planks", R="stick", C="cobblestone", H="i_stone_hammer", PC="i_clay_ball", _=null;
 const RECIPES = {
   barrel: [P,_,P, P,_,P, P,P,P],
   sieve:  [P,_,P, P,P,P, R,_,R],
   crook:  [R,R,_, _,R,_, _,R,_],
   hammer: [_,C,_, _,R,C, R,_,_],
-  chammer:[H,H,H, H,H,H, H,H,H]    // 9 martillos = martillo comprimido
+  chammer:[H,H,H, H,H,H, H,H,H],   // 9 martillos = martillo comprimido
+  pcrucible:[PC,_,PC, PC,_,PC, PC,PC,PC]  // 7 porcelain clay -> crisol crudo ("s s"/"s s"/"sms")
 };
 document.querySelectorAll("[data-recipe]").forEach(grid=>{
   const cells = RECIPES[grid.getAttribute("data-recipe")] || [];

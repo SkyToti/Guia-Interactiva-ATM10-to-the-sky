@@ -34,7 +34,6 @@
   .wrap{max-width:920px;margin:0 auto;padding:0 20px}
   img{image-rendering:pixelated}
 
-  /* ---- top bar ---- */
   .top{display:flex;justify-content:space-between;align-items:center;gap:12px;
     max-width:920px;margin:0 auto;padding:18px 20px 0}
   .back{font-family:var(--font-m);font-size:12.5px;color:var(--muted);text-decoration:none;
@@ -44,20 +43,16 @@
   .badge{font-family:var(--font-m);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
     color:var(--acc);border:1px solid var(--acc);border-radius:6px;padding:4px 10px;background:var(--acc-t)}
 
-  /* ---- hero ---- */
   header.hero{text-align:center;padding:40px 20px 8px}
   .kicker{font-family:var(--font-m);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
   h1{font-family:var(--font-d);font-weight:600;font-size:clamp(32px,6.6vw,58px);line-height:1.03;margin:0;text-wrap:balance}
   h1 .g{color:var(--acc)}
-  .sub{max-width:60ch;margin:18px auto 0;font-size:clamp(15px,2.1vw,18px);color:var(--ink-soft)}
+  .sub{max-width:62ch;margin:18px auto 0;font-size:clamp(15px,2.1vw,18px);color:var(--ink-soft)}
   .sub b{color:var(--ink)}
-
-  /* ---- howto strip ---- */
   .howto{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px auto 0;max-width:760px}
   .howto span{font-family:var(--font-m);font-size:11.5px;color:var(--muted);background:var(--panel);
     border:1px solid var(--line-soft);border-radius:100px;padding:6px 13px;display:inline-flex;gap:7px;align-items:center}
 
-  /* ---- section ---- */
   section.step{margin:52px 0 0}
   .step-h{display:flex;gap:15px;align-items:flex-start;margin-bottom:6px}
   .step-n{font-family:var(--font-d);font-weight:600;font-size:15px;color:#fff;background:var(--acc);
@@ -70,14 +65,12 @@
   .lead{font-size:16.5px}
   strong.hl{color:var(--acc-ink);font-weight:700}
 
-  /* ---- quest chip ---- */
   .quest{display:flex;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);
     border-left:3px solid var(--acc);border-radius:12px;padding:13px 16px;margin:16px 0}
   .quest .ic{font-size:19px;flex:none}
   .quest b{color:var(--ink)}
   .quest span{font-size:14px;color:var(--ink-soft)}
 
-  /* ---- recipe grid ---- */
   .recipes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:22px 0}
   .rec{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
   .rec h4{font-family:var(--font-d);font-weight:600;font-size:16px;margin:0 0 3px}
@@ -94,17 +87,18 @@
   .result .slot img{width:38px;height:38px}
   .result small{font-family:var(--font-m);font-size:10px;color:var(--muted);text-align:center;line-height:1.3}
 
-  /* ---- chain row ---- */
   .chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:center;
     background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 16px;margin:20px 0;box-shadow:var(--shadow)}
+  .chain .lbl{width:100%;text-align:center;font-family:var(--font-m);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--acc);margin:-4px 0 4px}
   .node{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:70px}
-  .node .tex{width:52px;height:52px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--panel-2)}
+  .node .tex{width:52px;height:52px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--panel-2);display:grid;place-items:center}
   .node .tex img{width:100%;height:100%}
+  .node .tex.itm img{width:40px;height:40px}
   .node small{font-size:11px;color:var(--ink-soft);text-align:center;font-weight:600}
   .chain .arrow{font-size:22px;color:var(--acc);opacity:.7}
-  .chain .op{font-family:var(--font-m);font-size:10.5px;color:var(--muted);text-align:center}
+  .chain .op{font-family:var(--font-m);font-size:10.5px;color:var(--muted);text-align:center;max-width:90px}
 
-  /* ---- variantes del generador ---- */
   .vars{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0}
   .var{display:flex;align-items:center;gap:10px;justify-content:center;background:var(--panel);
     border:1px solid var(--line);border-radius:12px;padding:12px 10px;box-shadow:var(--shadow)}
@@ -117,8 +111,8 @@
   .fine{font-size:13px;color:var(--muted);margin:6px 0 0}
   .fine b{color:var(--ink-soft)}
   img[data-tex="water"]{filter:brightness(.6) sepia(1) hue-rotate(178deg) saturate(4.5)}
+  img[data-tex="oak_leaves"]{filter:sepia(1) hue-rotate(60deg) saturate(2.2) brightness(.85)}
 
-  /* ---- 3D scene ---- */
   .scene{margin:22px 0 6px;background:
       radial-gradient(120% 90% at 50% 0%, color-mix(in srgb,var(--acc) 8%, var(--panel)), var(--panel));
     border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
@@ -139,7 +133,6 @@
   .cap{font-family:var(--font-m);font-size:11.5px;color:var(--muted);text-align:center;margin:8px 0 0}
   .cap b{color:var(--acc)}
 
-  /* ---- trick / note callouts ---- */
   .trick{display:flex;gap:13px;background:linear-gradient(180deg,var(--acc-t),transparent);
     border:1px solid var(--acc);border-radius:13px;padding:15px 17px;margin:20px 0}
   .trick .k{font-family:var(--font-d);font-weight:700;color:var(--acc);font-size:13px;letter-spacing:.08em;flex:none;
@@ -156,7 +149,6 @@
 
   .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:8px 0}
 
-  /* ---- checklist ---- */
   .check{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:40px 0 0;box-shadow:var(--shadow)}
   .check h3{font-family:var(--font-d);font-weight:600;font-size:20px;margin:0 0 14px}
   .check ol{margin:0;padding-left:0;list-style:none;counter-reset:c;display:flex;flex-direction:column;gap:10px}
@@ -165,7 +157,6 @@
     border:1px solid var(--acc);border-radius:6px;width:24px;height:24px;display:grid;place-items:center;flex:none;background:var(--acc-t)}
   .check li b{color:var(--ink)}
 
-  /* ---- footer ---- */
   footer{margin:52px 0 70px;text-align:center}
   .nextcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow);max-width:560px;margin:0 auto}
   .nextcard .lbl{font-family:var(--font-m);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
@@ -188,14 +179,14 @@
 <header class="hero">
   <p class="kicker">All the Mods 10 · To the Sky</p>
   <h1>El Arranque en <span class="g">el Vacío</span></h1>
-  <p class="sub">Apareces en una plataforma diminuta flotando en la nada. No tienes
-    <b>nada</b>. Al terminar esta guía vas a tener un <b>motor de recursos infinito</b> y
-    <b>energía gratis para siempre</b> — con bloques básicos de tres mods que trabajan juntos.
-    Este es el camino que seguiría alguien que ya se pasó el pack mil veces.</p>
+  <p class="sub">Apareces en una plataforma diminuta flotando en la nada, con un árbol y un poco de
+    pasto. Esta guía cubre <b>todo el Capítulo 1</b> del pack — cada mecánica, cada truco, en el orden
+    exacto en que conviene hacerlo — hasta dejarte con <b>minerales duplicándose</b> y
+    <b>energía infinita</b>. Es el camino de alguien que ya se pasó el pack mil veces.</p>
   <div class="howto">
-    <span>🖱️ Arrastra para girar la escena</span>
-    <span>🔍 Zoom con los botones</span>
+    <span>🖱️ Arrastra las escenas 3D para girarlas</span>
     <span>👆 Pasa el cursor por un bloque y te dice cuál es</span>
+    <span>⌨️ En el juego: tecla K = combinar items compatibles al instante</span>
   </div>
 </header>
 
@@ -204,79 +195,147 @@
   <!-- PASO 1 -->
   <section class="step reveal">
     <div class="step-h"><div class="step-n">1</div><div>
-      <span class="tag">Ex Deorum · el motor de recursos</span>
-      <h2>Todo sale del tamiz</h2></div></div>
-    <p class="lead">En un skyblock no hay minas. En este pack, <b>Ex Deorum</b> es tu mina: un
-      <b>martillo</b> tritura, un <b>tamiz</b> cierne y un <b>rastrillo</b> (crook) cosecha las hojas.
-      De ese trío sale literalmente <strong class="hl">todo</strong> tu material temprano.</p>
+      <span class="tag">Día uno · el árbol, el pasto y los guijarros</span>
+      <h2>No estás tan pobre como crees</h2></div></div>
+    <p class="lead">Tu isla tiene <b>un árbol</b> y <b>pasto</b>. Parece nada — pero el pasto es
+      literalmente una <strong class="hl">mina de piedra</strong> y el árbol es tu fábrica de todo.</p>
 
-    <div class="quest"><span class="ic">📖</span><div>
-      <b>Reclama</b> las primeras misiones de <i>Starting Out</i>: te dan planks, palos y los
-      objetos base. <span>El libro te da las piezas — esta guía te dice cómo encadenarlas.</span></div></div>
-
-    <p>Con la madera de tu primer árbol, craftea el kit de arranque:</p>
-
-    <div class="recipes">
-      <div class="rec">
-        <h4>Barril</h4><p class="out">exdeorum:oak_barrel · aquí mezclas fluidos y compostas</p>
-        <div class="craft">
-          <div class="grid3" data-recipe="barrel"></div>
-          <span class="arrow">→</span>
-          <div class="result"><div class="slot"><img data-tex="oak_planks" alt=""></div><small>Barril</small></div>
-        </div>
-      </div>
-      <div class="rec">
-        <h4>Tamiz</h4><p class="out">exdeorum:oak_sieve · el corazón del motor</p>
-        <div class="craft">
-          <div class="grid3" data-recipe="sieve"></div>
-          <span class="arrow">→</span>
-          <div class="result"><div class="slot"><img data-tex="oak_planks" alt=""></div><small>Tamiz</small></div>
-        </div>
-      </div>
-      <div class="rec">
-        <h4>Rastrillo</h4><p class="out">exdeorum:crook · cosecha hojas y saca silkworms</p>
-        <div class="craft">
-          <div class="grid3" data-recipe="crook"></div>
-          <span class="arrow">→</span>
-          <div class="result"><div class="slot"><img data-tex="i_crook" alt=""></div><small>Rastrillo</small></div>
-        </div>
-      </div>
-      <div class="rec">
-        <h4>Martillo de piedra</h4><p class="out">exdeorum:stone_hammer · tritura bloques</p>
-        <div class="craft">
-          <div class="grid3" data-recipe="hammer"></div>
-          <span class="arrow">→</span>
-          <div class="result"><div class="slot"><img data-tex="i_stone_hammer" alt=""></div><small>Martillo</small></div>
-        </div>
-      </div>
-    </div>
-
-    <p><b>El truco del hilo:</b> pega con el rastrillo a las hojas de tu árbol → sueltan
-      <b>saplings</b>, <b>palos</b> y <b>silkworms</b>. Pon los silkworms encima de más hojas: se
-      las comen y sueltan <b>string</b> sin parar. Con 9 de string tejes tu <b>primera malla</b>,
-      que va dentro del tamiz.</p>
+    <ul class="clean">
+      <li><span class="b">1</span><span><b>Tala el árbol y guarda TODOS los saplings.</b> Replanta de
+        inmediato. Si pierdes los saplings no reinicies el mundo: el libro de misiones tiene
+        <b>saplings de emergencia</b> arriba a la derecha (misión repetible).</span></li>
+      <li><span class="b">2</span><span><b>Shift + click derecho mirando la cara de ARRIBA de un bloque
+        de pasto → sale un guijarro.</b> Repite todo lo que quieras: piedra gratis e infinita sin
+        herramientas. Hay guijarros de piedra, andesita, granito, diorita, deepslate, blackstone y
+        basalto.</span></li>
+      <li><span class="b">3</span><span><b>4 guijarros (2×2) = 1 cobblestone.</b> Y el truco de
+        inventario: pasa el cursor sobre el montón y pulsa <b>K</b> — se combinan solos, sin mesa.
+        Funciona con guijarros, chunks de mineral y muchísimas recetas compactas.</span></li>
+      <li><span class="b">4</span><span><b>Sáltate las herramientas de madera.</b> El propio libro lo
+        dice: con guijarros tienes cobble antes de tener tablones. Ve directo a piedra.</span></li>
+      <li><span class="b">5</span><span>El pasto también <b>expande</b> tierra vecina y hace
+        <b>spawnear animales</b> (necesitan pasto + luz). No lo pavimentes todo.</span></li>
+    </ul>
 
     <div class="chain">
-      <div class="node"><div class="tex"><img data-tex="string" alt=""></div><small>String<br>(de silkworms)</small></div>
+      <span class="lbl">La primera piedra — sin minar nada</span>
+      <div class="node"><div class="tex"><img data-tex="grass_side" alt=""></div><small>Pasto</small></div>
+      <span class="op">shift + click der.<br>en la cara de arriba</span>
       <span class="arrow">→</span>
-      <div class="node"><div class="tex"><img data-tex="string" alt=""></div><small>Malla de<br>string</small></div>
-      <span class="op">se monta en</span>
-      <div class="node"><div class="tex"><img data-tex="oak_planks" alt=""></div><small>Tamiz</small></div>
+      <div class="node"><div class="tex itm"><img data-tex="i_pebble" alt=""></div><small>Guijarro ×4</small></div>
+      <span class="op">2×2 o tecla K</span>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="cobblestone" alt=""></div><small>Cobblestone</small></div>
     </div>
-
-    <div class="trick"><span class="k">TRUCO</span>
-      <p>Las mallas suben de tier: <b>string → flint → hierro → oro → diamante → netherite</b>.
-      Cada malla mejor <b>desbloquea más y mejores drops</b> del mismo bloque cernido. Súbelas
-      apenas puedas: es gratis multiplicar lo que sacas sin cambiar nada más del setup.</p></div>
   </section>
 
   <!-- PASO 2 -->
   <section class="step reveal">
     <div class="step-h"><div class="step-n">2</div><div>
-      <span class="tag">La progresión que el libro NO te conecta</span>
-      <h2>Piedra → polvo → clay → porcelana</h2></div></div>
-    <p class="lead">Aquí está la cadena invisible que casi nadie te explica y que abre medio
-      early game. El <b>martillo</b> baja cualquier bloque un escalón cada golpe:</p>
+      <span class="tag">Ex Deorum · el kit y el tamiz a fondo</span>
+      <h2>Todo sale del tamiz</h2></div></div>
+    <p class="lead">En un skyblock no hay minas: <b>Ex Deorum</b> es tu mina. Craftea el kit con la
+      madera del árbol:</p>
+
+    <div class="recipes">
+      <div class="rec">
+        <h4>Rastrillo (Crook)</h4><p class="out">exdeorum:crook · para las hojas</p>
+        <div class="craft"><div class="grid3" data-recipe="crook"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="i_crook" alt=""></div><small>Crook</small></div></div>
+      </div>
+      <div class="rec">
+        <h4>Martillo de piedra</h4><p class="out">exdeorum:stone_hammer · tritura bloques</p>
+        <div class="craft"><div class="grid3" data-recipe="hammer"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="i_stone_hammer" alt=""></div><small>Martillo</small></div></div>
+      </div>
+      <div class="rec">
+        <h4>Barril</h4><p class="out">exdeorum:oak_barrel · composta y mezcla fluidos</p>
+        <div class="craft"><div class="grid3" data-recipe="barrel"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="barrel_side" alt=""></div><small>Barril</small></div></div>
+      </div>
+      <div class="rec">
+        <h4>Tamiz</h4><p class="out">exdeorum:oak_sieve · el corazón del motor</p>
+        <div class="craft"><div class="grid3" data-recipe="sieve"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="oak_planks" alt=""></div><small>Tamiz</small></div></div>
+      </div>
+    </div>
+
+    <p><b>La ruta del hilo</b> (tu primera malla): rastrilla las hojas con el crook — dan más saplings,
+      palos y <b>silkworms</b> (gusanos de seda). <b>Click derecho con el silkworm sobre unas hojas</b>:
+      las infesta y se las va comiendo (se ponen blancas). Rastrilla las hojas infestadas → <b>string</b>.
+      Con 9 string tejes la <b>malla de string</b>. (Y el silkworm cocido es comida early decente.)</p>
+
+    <div class="chain">
+      <span class="lbl">De las hojas a la malla</span>
+      <div class="node"><div class="tex"><img data-tex="oak_leaves" alt=""></div><small>Hojas</small></div>
+      <span class="op">crook</span><span class="arrow">→</span>
+      <div class="node"><div class="tex itm"><img data-tex="i_silkworm" alt=""></div><small>Silkworm</small></div>
+      <span class="op">click der.<br>en hojas</span><span class="arrow">→</span>
+      <div class="node"><div class="tex itm"><img data-tex="string" alt=""></div><small>String ×9</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex itm"><img data-tex="i_string_mesh" alt=""></div><small>Malla de<br>string</small></div>
+    </div>
+
+    <p><b>Cómo se usa el tamiz</b> (exacto): click derecho con la malla para instalarla
+      (shift + click derecho la saca). Click derecho con el bloque a cerner (tierra, grava…) para
+      meterlo, y sigue clickeando — o mantén presionado — hasta que pase y suelte los drops.</p>
+
+    <div class="trick"><span class="k">PRO 5×5</span>
+      <p><b>Los tamices vecinos trabajan al mismo tiempo.</b> Si pones varios tamices juntos (hasta un
+      área de <b>5×5 = 25 tamices</b>), tus clicks en uno los trabajan TODOS a la vez. Es el primer
+      "multiplicador" del pack y es gratis: haz una parrilla de tamices apenas puedas, cada click
+      vale ×25.</p></div>
+
+    <div class="note"><b>Las mallas en ESTE pack (importante):</b> las mallas superiores
+      <b>NO se craftean</b> — el pack eliminó sus recetas. Te las dan las <b>MISIONES</b>: la de
+      <b>flint</b> en el Capítulo 1, y las de <b>hierro, diamante y netherite</b> en el Capítulo 2.
+      Persigue esas quests: cada malla mejor desbloquea drops nuevos y más probabilidad. Con 2 flint
+      haz también las <b>Flint Shears</b> (tijeras baratas) para cosechar hojas enteras.</p>
+  </section>
+
+  <!-- PASO 3 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">3</div><div>
+      <span class="tag">Suelo · el ciclo de la tierra, el musgo y el agua</span>
+      <h2>Fabricar terreno de la nada</h2></div></div>
+    <p class="lead">La tierra es <b>rara y valiosa</b> al principio — y solo hay UNA fuente early:
+      <b>compostarla</b>.</p>
+
+    <div class="chain">
+      <span class="lbl">El ciclo de la tierra</span>
+      <div class="node"><div class="tex"><img data-tex="oak_leaves" alt=""></div><small>Hojas / saplings<br>/ cultivos</small></div>
+      <span class="op">al barril<br>(compost)</span><span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="dirt" alt=""></div><small>Tierra</small></div>
+      <span class="op">al tamiz</span><span class="arrow">→</span>
+      <div class="node"><div class="tex itm"><img data-tex="i_grass_seeds" alt=""></div><small>Grass seeds<br>+ semillas</small></div>
+      <span class="op">click der.<br>en tierra</span><span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="grass_side" alt=""></div><small>Más pasto<br>(más guijarros)</small></div>
+    </div>
+
+    <ul class="clean">
+      <li><span class="b">→</span><span><b>Composta en el barril</b>: hojas, saplings sobrantes o
+        cultivos → se convierten en <b>tierra</b>. Tus árboles alimentan el ciclo solos.</span></li>
+      <li><span class="b">→</span><span><b>Tamiza la tierra</b>: da <b>semillas de cultivos</b> (¡tu
+        comida!), <b>grass seeds</b> (click derecho en tierra = pasto) y, raramente,
+        <b>mycelium spores</b> — <strong class="hl">guárdalas</strong>, son la llave del agua de bruja
+        del Paso 7.</span></li>
+      <li><span class="b">→</span><span><b>Musgo barato</b>: 4 grass seeds = 1 bloque de musgo. Y aquí
+        el truco: <b>bonemeal al musgo</b> y se expande a la tierra, pasto y PIEDRA de alrededor —
+        multiplica bloques compostables gratis. Tamizar musgo da <b>saplings</b> (y con malla de
+        hierro+, saplings de <b>Menril</b> para Integrated Dynamics).</span></li>
+      <li><span class="b">→</span><span><b>Agua infinita para siempre</b>: consigue 2 aguas (lluvia con
+        el barril afuera, o hielo derretido) y ponlas <b>en diagonal en un hueco de 2×2</b>. Fuente
+        infinita clásica, día uno, cero mods.</span></li>
+    </ul>
+  </section>
+
+  <!-- PASO 4 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">4</div><div>
+      <span class="tag">La cadena del martillo · y su versión ×9</span>
+      <h2>Piedra → grava → arena → polvo</h2></div></div>
+    <p class="lead">El martillo baja cualquier bloque un escalón por golpe. Esta cadena alimenta TODO
+      lo que viene:</p>
 
     <div class="chain">
       <div class="node"><div class="tex"><img data-tex="cobblestone" alt=""></div><small>Cobble</small></div>
@@ -289,63 +348,172 @@
       <span class="op">martillo cada paso</span>
     </div>
 
-    <p>La <b>grava</b> cernida te da tus primeros <b>metales</b> (hierro, cobre, osmio…) y flint.
-      Pero el <b>polvo</b> esconde el secreto: mételo en un <b>barril con agua</b> y se convierte
-      en <strong class="hl">clay</strong>. Y la clay abre toda la <b>porcelana</b>.</p>
-
-    <div class="chain">
-      <div class="node"><div class="tex"><img data-tex="dust" alt=""></div><small>Polvo</small></div>
-      <span class="op">+ 1000mb<br>agua (barril)</span>
-      <span class="arrow">→</span>
-      <div class="node"><div class="tex"><img data-tex="clay" alt=""></div><small>Clay</small></div>
-      <span class="op">cocer</span>
-      <span class="arrow">→</span>
-      <div class="node"><div class="tex"><img data-tex="i_clay_ball" alt=""></div><small>Porcelana</small></div>
-      <span class="arrow">→</span>
-      <div class="node"><div class="tex"><img data-tex="porcelain_crucible" alt=""></div><small>Crisol de<br>porcelana</small></div>
-    </div>
-
-    <div class="trick"><span class="k">POR QUÉ</span>
-      <p>La <b>porcelana</b> aguanta lava y agua de bruja (los buckets normales no), y el
-      <b>crisol de porcelana funde el doble de rápido</b> que el de roble. Es la llave del
-      siguiente paso: la energía infinita. Fabrica un crisol de porcelana apenas tengas clay.</p></div>
+    <p>Cada eslabón se <b>tamiza distinto</b>: la grava da minerales, la arena y el polvo dan otras
+      cosas (y más adelante martillarás <b>deepslate, blackstone, netherrack y end stone</b> triturados
+      para tamizar sus tesoros). El <b>flint</b> sale de romper grava a mano o de tamizar — guárdalo:
+      aquí el flint vale oro (mallas, tijeras, herramientas).</p>
 
     <div class="divider"></div>
 
-    <p class="lead" style="margin-top:26px"><b>El truco del martillo comprimido</b> — así trabajan
-      los que ya se pasaron el pack: en este modpack casi todo se puede <b>compactar</b> (9 cobble =
-      cobble comprimido). Y Ex Deorum tiene la contraparte:</p>
+    <p class="lead"><b>El truco del martillo comprimido</b> — así trabaja la gente que ya se pasó el
+      pack:</p>
 
     <div class="recipes">
       <div class="rec">
-        <h4>Martillo Comprimido</h4><p class="out">exdeorum:compressed_stone_hammer · 9 martillos en uno</p>
-        <div class="craft">
-          <div class="grid3" data-recipe="chammer"></div>
-          <span class="arrow">→</span>
-          <div class="result"><div class="slot"><img data-tex="i_stone_hammer" alt=""></div><small>Martillo<br>Comprimido</small></div>
-        </div>
+        <h4>Martillo Comprimido</h4><p class="out">exdeorum:compressed_stone_hammer · 9 en 1</p>
+        <div class="craft"><div class="grid3" data-recipe="chammer"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="i_stone_hammer" alt=""></div><small>Martillo<br>Comprimido</small></div></div>
       </div>
     </div>
 
     <ul class="clean">
-      <li><span class="b">1</span><span>Compacta tu cobble: <b>9 cobble → Cobble Comprimido</b> (receta 3×3,
-        o automático con la <b>Compacting Upgrade</b> de Sophisticated que viste arriba).</span></li>
-      <li><span class="b">2</span><span>Golpéalo con el <b>Martillo Comprimido</b>: <b>1 bloque comprimido →
-        9 grava de un solo golpe</b>. Un click = nueve.</span></li>
-      <li><span class="b">3</span><span>Y existe el <b>Tamiz Comprimido</b>, que cierne bloques comprimidos
-        enteros. Mismo principio: nueve por el precio de un click.</span></li>
+      <li><span class="b">1</span><span><b>9 bloques = 1 comprimido</b> (All The Compressed): cobble
+        comprimido, grava comprimida… y se puede comprimir otra vez, y otra.</span></li>
+      <li><span class="b">2</span><span><b>9 martillos = 1 Martillo Comprimido</b>, que golpea bloques
+        comprimidos como si fueran normales: <b>1 cobble comprimido → 9 grava de UN golpe</b>.</span></li>
+      <li><span class="b">3</span><span>Existe el <b>Tamiz Comprimido</b>: cierne bloques comprimidos
+        enteros. Combínalo con la parrilla 5×5 y cada click procesa una barbaridad.</span></li>
     </ul>
 
     <div class="trick"><span class="k">TRUCO</span>
-      <p><b>Compactar te sale a cuenta siempre:</b> ocupa 9× menos espacio, se martilla y se cierne en
-      lotes de 9, y cuando necesites el material suelto lo descompactas en la mesa. Trabaja comprimido,
-      descomprime al final. Más adelante el <b>Flux Compactor</b> (Ex Machinis) lo compacta todo con RF,
-      solo, sin que toques nada.</p></div>
+      <p><b>Trabaja comprimido, descomprime al final.</b> Ocupa 9× menos cofres, se martilla y cierne
+      en lotes de 9, y la <b>Compacting Upgrade</b> de Sophisticated Storage (la ves en el Paso 8)
+      comprime sola lo que entra al barril. Más adelante, el <b>Flux Compactor</b> de Ex Machinis lo
+      hace con RF sin que toques nada.</p></div>
   </section>
 
-  <!-- PASO 3 -->
+  <!-- PASO 5 -->
   <section class="step reveal">
-    <div class="step-h"><div class="step-n">3</div><div>
+    <div class="step-h"><div class="step-n">5</div><div>
+      <span class="tag">Minerales · chunks, el exprimidor y el 2× más barato del juego</span>
+      <h2>Por fin: hierro, cobre y compañía</h2></div></div>
+    <p class="lead">Tamiza <b>grava</b> y no salen minerales enteros — salen <b>CHUNKS</b> (trocitos):
+      de hierro, cobre, oro, zinc, plata, torio… más carbón, lapis, esmeraldas y amatista según tu
+      malla. Y aquí viene la parte que separa a un novato de un veterano: <b>cómo convertir chunks en
+      el doble de lingotes</b>.</p>
+
+    <div class="chain">
+      <span class="lbl">La ruta ÓPTIMA del mineral (2× lingotes)</span>
+      <div class="node"><div class="tex"><img data-tex="gravel" alt=""></div><small>Grava</small></div>
+      <span class="op">tamiz</span><span class="arrow">→</span>
+      <div class="node"><div class="tex itm"><img data-tex="i_iron_chunk" alt=""></div><small>Chunk ×4</small></div>
+      <span class="op">2×2 o<br>tecla K</span><span class="arrow">→</span>
+      <div class="node"><div class="tex itm"><img data-tex="raw_iron" alt=""></div><small>Raw ore</small></div>
+      <span class="op">+ Ore Hammer<br>en la mesa</span><span class="arrow">→</span>
+      <div class="node"><div class="tex itm"><img data-tex="i_iron_dust" alt=""></div><small>Polvo ×2</small></div>
+      <span class="op">fundir</span><span class="arrow">→</span>
+      <div class="node"><div class="tex itm"><img data-tex="raw_iron" alt=""></div><small>¡2 lingotes!</small></div>
+    </div>
+
+    <ul class="clean">
+      <li><span class="b">1</span><span><b>4 chunks = 1 raw ore</b> (2×2 en la mesa, o tecla <b>K</b>
+        sobre el montón).</span></li>
+      <li><span class="b">2</span><span><b>Ore Hammer de AllTheOres</b> (bloque de hierro + 2 palos):
+        pon <b>raw ore + hammer en la mesa → 2 POLVOS</b>. Cada polvo se funde en un lingote:
+        <strong class="hl">acabas de duplicar tu mineral</strong> con una herramienta de crafteo. Hay
+        un ore hammer por metal y sirven para todos los raw ores, ingots y ores.</span></li>
+      <li><span class="b">3</span><span><b>El Exprimidor (Squeezer) de Integrated Dynamics</b> — palos,
+        tablones, 1 bloque de hierro y 2 lingotes: pon un <b>raw ore BLOCK</b> dentro y
+        <strong class="hl">sáltale encima</strong> (sí, literal: saltos) — lo exprime a raw ores y
+        <b>a veces suelta EXTRA</b>. Sin energía, sin cables, día uno.</span></li>
+      <li><span class="b">4</span><span>Funde en un <b>Iron Furnace</b> (Iron Furnaces): más rápido que
+        el horno vanilla y con <b>upgrades</b> — en este pack, todo tiene upgrade.</span></li>
+    </ul>
+
+    <div class="trick"><span class="k">FUTURO</span>
+      <p>Guarda <b>arena y blackstone triturado</b> a lo bestia: con mallas de <b>diamante/netherite</b>
+      (cap. 2) se tamizan <b>pepitas de ALLTHEMODIUM</b> — el metal legendario del pack sale de tu
+      parrilla de tamices. Ese es el puente al Acto IV.</p></div>
+  </section>
+
+  <!-- PASO 6 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">6</div><div>
+      <span class="tag">La progresión que el libro apenas menciona</span>
+      <h2>Clay y porcelana</h2></div></div>
+    <p class="lead">El <b>polvo</b> del final de la cadena del martillo esconde la llave de la
+      cerámica — y la cerámica es la llave de la lava:</p>
+
+    <div class="chain">
+      <span class="lbl">Del polvo al crisol</span>
+      <div class="node"><div class="tex"><img data-tex="dust" alt=""></div><small>Polvo</small></div>
+      <span class="op">al barril<br>con agua</span><span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="clay" alt=""></div><small>Clay</small></div>
+      <span class="op">bola + <b>bonemeal</b></span><span class="arrow">→</span>
+      <div class="node"><div class="tex itm"><img data-tex="i_clay_ball" alt=""></div><small>Porcelain<br>clay</small></div>
+      <span class="op">moldear<br>+ COCER</span><span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="porcelain_crucible" alt=""></div><small>Crisol de<br>porcelana</small></div>
+    </div>
+
+    <div class="recipes">
+      <div class="rec">
+        <h4>Crisol (molde crudo)</h4><p class="out">7 porcelain clay → cocer en horno</p>
+        <div class="craft"><div class="grid3" data-recipe="pcrucible"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="porcelain_crucible" alt=""></div><small>al horno<br>= crisol</small></div></div>
+      </div>
+    </div>
+
+    <ul class="clean">
+      <li><span class="b">→</span><span><b>Clay:</b> echa el bloque de polvo a un barril con agua →
+        clay (click derecho para sacarla). El bonemeal sale de los huesos de esqueletos — donde esté
+        oscuro spawnean mobs, a 24+ bloques de ti.</span></li>
+      <li><span class="b">→</span><span><b>El bucket de porcelana</b> es tu primer bucket, baratísimo,
+        PERO: <b>al colocar LAVA se rompe</b> (un solo uso). Con agua es reutilizable. Planea con
+        eso.</span></li>
+      <li><span class="b">→</span><span><b>El crisol de porcelana funde el doble de rápido</b> que el
+        de roble y aguanta lava. Haz 2-3: los vas a querer.</span></li>
+    </ul>
+  </section>
+
+  <!-- PASO 7 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">7</div><div>
+      <span class="tag">Alquimia de barril · el Nether y el End sin portales</span>
+      <h2>El barril fabrica dimensiones</h2></div></div>
+    <p class="lead">En este skyblock el Nether está vacío y el End queda lejos. No importa: <b>tu
+      barril fabrica sus bloques</b>. Estas son las recetas de mezcla (echa el ingrediente al barril
+      con el fluido dentro):</p>
+
+    <div class="chain">
+      <span class="lbl">Agua de bruja — la llave de todo lo oscuro</span>
+      <div class="node"><div class="tex"><img data-tex="barrel_side" alt=""></div><small>Barril<br>con agua</small></div>
+      <span class="op">colocado ENCIMA<br>de un bloque de</span>
+      <div class="node"><div class="tex"><img src="" data-tex="mycelium_side" alt=""></div><small>Mycelium<br>(de las esporas)</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="barrel_side" alt=""></div><small>Agua de bruja<br>(~1.5 min)</small></div>
+      <span class="op">bonus: el mycelium<br>cercano cría hongos</span>
+    </div>
+
+    <div class="vars">
+      <div class="var"><div class="pair"><img data-tex="barrel_side" alt="" title="witch water"><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="netherrack" alt=""><small>Netherrack</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="glowstone" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="end_stone" alt=""><small>End Stone</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="water" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="obsidian" alt=""><small>Obsidiana</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="sand" alt=""><img data-tex="barrel_side" alt="" title="witch water"></div>
+        <span class="eq">→</span><div class="res"><img data-tex="soul_sand" alt=""><small>Soul Sand</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="water" alt=""><img data-tex="milk" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="slime" alt=""><small>Slime</small></div></div>
+    </div>
+    <p class="fine">Los pares muestran el fluido base del barril + lo que le echas/mezclas. El barril
+      con textura de madera en los pares = <b>agua de bruja</b> dentro. Para recetas con lava usa un
+      <b>barril de PIEDRA</b> (tu piedra de guijarros) — los de madera se queman.</p>
+
+    <ul class="clean">
+      <li><span class="b">→</span><span><b>Netherrack</b> → crisol = tu <b>lava</b> (¼ de cubo por
+        netherrack en el crisol de lava… o simplemente fúndelo). Y martillado + tamizado da items del
+        Nether: cuarzo y más.</span></li>
+      <li><span class="b">→</span><span><b>End stone</b> martillada + tamizada = <b>perlas de ender,
+        ojos, chorus</b>… el End por correo.</span></li>
+      <li><span class="b">→</span><span><b>Soul sand</b> tamizada (malla hierro+) = <b>Prosperity
+        Shards</b> para Mystical Agriculture — apunta directo al Acto II.</span></li>
+    </ul>
+  </section>
+
+  <!-- PASO 8 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">8</div><div>
       <span class="tag">El combo estrella · 3 mods trabajando juntos</span>
       <h2>El motor infinito de poder</h2></div></div>
     <p class="lead">Este es el momento en que dejas de depender del carbón para siempre. Pero
@@ -367,55 +535,42 @@
         <span class="eq">→</span><div class="res"><img data-tex="obsidian" alt=""><small>Obsidiana*</small></div></div>
     </div>
     <p class="fine">* Algunos (piedra, obsidiana, netherrack, andesita…) piden además un <b>bloque
-      "modifier"</b> adyacente — el mismo bloque que quieres generar — y consumen uno de los dos lados.
-      Para el arranque nos basta el <b>cobblestone: agua + lava</b>, sin modifier y sin consumir nada.</p>
+      "modifier"</b> — va <b>DEBAJO</b> del generador — y consumen uno de los dos lados. Para el
+      arranque nos basta el <b>cobblestone: agua + lava</b>, sin modifier y sin consumir nada.</p>
 
-    <p><b>El Generador "Stone"</b> (el que crafteas con piedra suave + vidrio) es el <b>tier básico</b>:
-      define la velocidad. Los tiers <b>cobre → hierro → oro → diamante → netherite</b> son el mismo
-      bloque, solo más rápidos. Así se pone el de cobble:</p>
+    <p><b>El Generador "Stone"</b> (piedra suave + vidrio) es el <b>tier básico</b>: define la
+      velocidad. Los tiers <b>cobre → hierro → oro → diamante → netherite</b> son el mismo bloque,
+      solo más rápidos.</p>
 
     <div class="scene">
       <div class="stage" id="scene1"></div>
       <div class="ctrls" data-for="scene1">
-        <button data-act="left">⟲ Izq</button>
-        <button data-act="right">Der ⟳</button>
-        <button data-act="top">Vista superior</button>
-        <button data-act="zin">Zoom +</button>
-        <button data-act="zout">Zoom −</button>
-        <button data-act="reset">Reset</button>
+        <button data-act="left">⟲ Izq</button><button data-act="right">Der ⟳</button>
+        <button data-act="top">Vista superior</button><button data-act="zin">Zoom +</button>
+        <button data-act="zout">Zoom −</button><button data-act="reset">Reset</button>
       </div>
     </div>
     <p class="cap"><b>Agua</b> a un lado, <b>Generador</b> en medio, <b>Lava</b> al otro — y el
-      almacenamiento va <b>ENCIMA</b>: fíjate que la textura de arriba del generador tiene un
-      <b>hueco</b> — ese es su output. Gíralo y pasa el cursor.</p>
-
-    <div class="note"><b>¿Y las variantes con "modifier"?</b> El bloque modificador (piedra, andesita,
-      obsidiana…) va <b>DEBAJO</b> del generador. Lo confirma el propio libro de misiones (la quest de
-      Darkstone): <i>"Place Witch Water and Lava next to the Block Generator, with an Arcane Crystal
-      Block underneath"</i>. Lados = fluidos · abajo = modifier · arriba = salida.</div>
+      almacenamiento va <b>ENCIMA</b>: la textura de arriba del generador tiene un <b>hueco</b>, ese
+      es su output. Gíralo y pasa el cursor.</p>
 
     <div class="trick"><span class="k">TRUCO</span>
-      <p>Arriba le puedes poner <b>lo que quieras que tenga inventario</b>: un <b>cajón (drawer) 1×1
-      de roble</b>, un <b>cajón compactador</b> de Functional Storage (guarda nugget/lingote/bloque en
-      una ranura), un <b>barril o cofre de Sophisticated Storage</b>… Y a los de Sophisticated les cabe
-      la <b>Compacting Upgrade</b> (2×2) o la <b>Advanced Compacting Upgrade</b> (3×3), que <b>compactan
-      solos</b> lo que entra. Cobble → cobble comprimido, automático y sin gastar un tick tuyo.</p></div>
+      <p>Arriba le puedes poner <b>lo que quieras que tenga inventario</b>: un <b>cajón 1×1 de
+      roble</b>, un <b>cajón compactador</b> de Functional Storage (nugget/lingote/bloque en una
+      ranura), un <b>barril o cofre de Sophisticated Storage</b>… y a los de Sophisticated les cabe la
+      <b>Compacting Upgrade</b> que compacta solo lo que entra.</p></div>
 
     <div class="divider"></div>
 
     <p class="lead" style="margin-top:26px">Ya tienes cobble infinito. Ahora conviértelo en
-      <b>energía</b>: el cobble alimenta el <b>Crisol</b>, que lo funde en <b>lava</b>, que quema el
-      <b>Magmatic Generator</b>.</p>
+      <b>energía</b>: cobble → <b>Crisol</b> → lava → <b>Magmatic Generator</b>.</p>
 
     <div class="scene">
       <div class="stage" id="scene2"></div>
       <div class="ctrls" data-for="scene2">
-        <button data-act="left">⟲ Izq</button>
-        <button data-act="right">Der ⟳</button>
-        <button data-act="top">Vista superior</button>
-        <button data-act="zin">Zoom +</button>
-        <button data-act="zout">Zoom −</button>
-        <button data-act="reset">Reset</button>
+        <button data-act="left">⟲ Izq</button><button data-act="right">Der ⟳</button>
+        <button data-act="top">Vista superior</button><button data-act="zin">Zoom +</button>
+        <button data-act="zout">Zoom −</button><button data-act="reset">Reset</button>
       </div>
     </div>
     <p class="cap"><b>Crisol de porcelana</b> (lava fundida dentro, <b>calor debajo</b>) →
@@ -427,80 +582,80 @@
       la lava como <b>fluido</b>, y el Magmatic Generator <b>no la jala solo</b>: necesitas una
       <b>Tubería de Fluidos de Pipez</b> — la más barata del pack: <b>3 hierro + 2 cubetas +
       1 redstone = 16 tuberías</b>. Conéctala del crisol al generador y pon la conexión del lado del
-      crisol en modo <b>Extract</b>. Esa es tu primera logística de fluidos, y Pipez va a ser tu navaja
-      suiza: tiene tubería de <b>items</b>, <b>fluidos</b> y <b>energía</b>, todas igual de baratas.</div>
+      crisol en modo <b>Extract</b>. Pipez va a ser tu navaja suiza: items, fluidos y energía, todas
+      igual de baratas.</div>
 
     <div class="note"><b>El arranque del huevo y la gallina:</b> el crisol necesita <b>calor debajo</b>
-      para fundir (antorcha ×1, lava ×3, fuego ×5). Como al principio no tienes lava, arranca con
-      <b>antorchas o fuego de netherrack</b> debajo; deja un poco de la lava que produzca como fuente
-      de calor y ya se sostiene solo.</p>
+      para fundir (antorcha ×1, lava ×3, fuego ×5). Tu primera lava: funde <b>netherrack</b> del Paso 7
+      en el crisol con antorchas debajo. Después deja un poco de lava fija como fuente de calor y el
+      sistema se sostiene solo.</div>
 
-    <div class="trick"><span class="k">TRUCO</span>
-      <p>El <b>Crisol de porcelana</b> funde el doble de rápido que el de roble. Y ojo con escalar: los
-      generadores <b>8× y 64×</b> de Generator Galore producen mucho más pero <b>consumen más</b> — pon
-      más crisoles antes de subir de tier, o el cuello de botella será fundir, no generar.</p></div>
+    <div class="trick"><span class="k">ESCALA</span>
+      <p>Los generadores <b>8× y 64×</b> de Generator Galore producen mucho más pero <b>consumen
+      más lava</b> — añade más crisoles antes de subir de tier, o el cuello de botella será fundir,
+      no generar.</p></div>
   </section>
 
-  <!-- PASO 4 -->
+  <!-- PASO 9 -->
   <section class="step reveal">
-    <div class="step-h"><div class="step-n">4</div><div>
+    <div class="step-h"><div class="step-n">9</div><div>
       <span class="tag">Cierra el bucle · hazlo 100% pasivo</span>
       <h2>Que las máquinas trabajen por ti</h2></div></div>
-    <p class="lead">Ya tienes energía. Ahora usa esa RF para <b>dejar de clickear el tamiz a mano</b>.
-      El propio <b>Ex Deorum</b> trae las máquinas (y <b>Ex Machinis</b> añade las versiones "Flux",
-      aún más rápidas, para después):</p>
+    <p class="lead">Ya tienes energía. Ahora usa esa RF para <b>dejar de clickear</b>. El propio
+      <b>Ex Deorum</b> trae las máquinas (y <b>Ex Machinis</b> añade las versiones "Flux", aún más
+      rápidas, para después):</p>
 
     <ul class="clean">
-      <li><span class="b">→</span><span>El <b>Mechanical Hammer</b> (Ex Deorum) tritura con FE. Truco del
-        propio mod: <b>ponle un martillo en su slot y va al doble</b>; con encantamiento de eficiencia,
-        más rápido todavía.</span></li>
-      <li><span class="b">→</span><span>El <b>Mechanical Sieve</b> (Ex Deorum) cierne con FE — necesita su
+      <li><span class="b">→</span><span>El <b>Mechanical Hammer</b> tritura con FE. Truco del propio
+        mod: <b>ponle un martillo en su slot y va al doble</b>; con eficiencia encantada, más
+        todavía.</span></li>
+      <li><span class="b">→</span><span>El <b>Mechanical Sieve</b> cierne con FE — necesita su
         <b>malla</b> en el slot, igual que el manual.</span></li>
-      <li><span class="b">→</span><span>Entre máquinas, <b>Tuberías de Items de Pipez</b> (modo Extract en
-        la salida de cada una). La energía del generador llega a los bloques <b>adyacentes</b>; si están
-        lejos, <b>Tubería de Energía de Pipez</b>.</span></li>
-      <li><span class="b">→</span><span>Al final, un <b>barril de Sophisticated Storage</b> — ya sabes:
-        con <b>Compacting Upgrade</b> se compacta solo.</span></li>
+      <li><span class="b">→</span><span>Entre máquinas, <b>Tuberías de Items de Pipez</b> (modo Extract
+        en la salida). La energía llega a los bloques <b>adyacentes</b> al generador; si están lejos,
+        <b>Tubería de Energía</b>.</span></li>
+      <li><span class="b">→</span><span>Al final, un <b>barril de Sophisticated Storage</b> con
+        <b>Compacting Upgrade</b>: tu producción se guarda ya compactada.</span></li>
     </ul>
 
     <div class="scene">
       <div class="stage" id="scene3"></div>
       <div class="ctrls" data-for="scene3">
-        <button data-act="left">⟲ Izq</button>
-        <button data-act="right">Der ⟳</button>
-        <button data-act="top">Vista superior</button>
-        <button data-act="zin">Zoom +</button>
-        <button data-act="zout">Zoom −</button>
-        <button data-act="reset">Reset</button>
+        <button data-act="left">⟲ Izq</button><button data-act="right">Der ⟳</button>
+        <button data-act="top">Vista superior</button><button data-act="zin">Zoom +</button>
+        <button data-act="zout">Zoom −</button><button data-act="reset">Reset</button>
       </div>
     </div>
     <p class="cap">La línea del frente: <b>Mechanical Hammer → tubería de items → Mechanical Sieve →
-      tubería de items → Barril</b>. Detrás: el <b>Magmatic Generator</b> con <b>tuberías de energía</b>
-      repartiendo el FE a las dos máquinas. Nada está "pegado por magia": cada conexión es una tubería.</p>
+      tubería de items → Barril</b>. Detrás: el <b>Magmatic Generator</b> con <b>tuberías de energía</b>.
+      Nada está "pegado por magia": cada conexión es una tubería.</p>
 
     <div class="trick"><span class="k">EL CIERRE</span>
-      <p>Fíjate en el bucle completo: la <b>RF</b> mueve las máquinas, que procesan los <b>bloques</b>,
-      que alimentan el crisol, que hace la <b>lava</b>, que genera la <b>RF</b>. Un sistema que se
-      alimenta a sí mismo y escupe metales mientras tú haces otra cosa. <b>Eso</b> es el early game óptimo.</p></div>
+      <p>El bucle completo: la <b>RF</b> mueve las máquinas → procesan <b>bloques</b> → alimentan el
+      crisol → hace <b>lava</b> → genera <b>RF</b>. Y mientras las máquinas llegan, tu parrilla de
+      tamices <b>5×5</b> sigue siendo el mejor click del juego. <b>Eso</b> es el early game
+      óptimo.</p></div>
 
-    <div class="note">🔌 <b>El puente al futuro:</b> ese barril de salida es tu punto de conexión. En el
-      <b>Acto III</b> le pones un <b>bus de importación de AE2</b> y todos estos metales entran solos a tu
-      almacenamiento digital. No tires nada de esto: es la base de toda tu base.</div>
+    <div class="note">🔌 <b>El puente al futuro:</b> ese barril de salida es tu punto de conexión. En
+      el <b>Acto III</b> le pones un <b>bus de importación de AE2</b> y todos estos materiales entran
+      solos a tu almacenamiento digital. No tires nada de esto: es la base de toda tu base.</div>
   </section>
 
   <!-- CHECKLIST -->
   <div class="check reveal">
-    <h3>✓ Checklist del arranque</h3>
+    <h3>✓ Checklist del Capítulo 1</h3>
     <ol>
-      <li><b>Kit Ex Deorum:</b> barril, tamiz, rastrillo y martillo de piedra.</li>
-      <li><b>Primera malla</b> de string (silkworms → hilo) montada en el tamiz.</li>
-      <li><b>Cadena de trituración</b> corriendo: cobble → grava → arena → polvo.</li>
-      <li><b>Clay y porcelana:</b> polvo+agua → clay → crisol de porcelana.</li>
-      <li><b>Generador de cobble:</b> agua a un lado + lava al otro, y el cajón/barril <b>ENCIMA</b> (ahí está su output).</li>
-      <li><b>Martillo comprimido:</b> 9 martillos → 1 comprimido; trabaja con bloques compactados (9 por golpe).</li>
-      <li><b>Motor infinito:</b> hopper de cobble al Crisol (calor debajo) → <b>tubería de fluidos Pipez</b> → Magmatic Generator = RF ∞.</li>
-      <li><b>Automatizado:</b> Mechanical Hammer (con martillo dentro) + Mechanical Sieve (con malla), unidos con <b>tuberías de items Pipez</b> y energía del generador.</li>
-      <li><b>Sube las mallas</b> de tier cuando puedas (flint → hierro → …).</li>
+      <li><b>Guijarros</b> con shift+click al pasto → 4 = cobble → herramientas de piedra directo.</li>
+      <li><b>Kit Ex Deorum:</b> crook, martillo, barril, tamiz + malla de string (silkworms → hilo).</li>
+      <li><b>Parrilla de tamices</b> (vecinos trabajan juntos, hasta 5×5) y mallas de las MISIONES.</li>
+      <li><b>Ciclo de tierra:</b> compost en barril → tamizar tierra → grass seeds/musgo → más de todo. Agua infinita 2×2 diagonal.</li>
+      <li><b>Cadena del martillo:</b> cobble→grava→arena→polvo, y su versión comprimida ×9.</li>
+      <li><b>Minerales 2×:</b> chunks (tecla K) → raw ore → Ore Hammer = 2 polvos → Iron Furnace. Squeezer para el extra.</li>
+      <li><b>Porcelana:</b> polvo+agua→clay; clay+bonemeal→porcelain; moldear y COCER el crisol.</li>
+      <li><b>Alquimia de barril:</b> agua de bruja (barril sobre mycelium), netherrack, end stone, obsidiana, soul sand, slime.</li>
+      <li><b>Generador de cobble:</b> agua | gen | lava, almacenamiento ENCIMA, modifier DEBAJO.</li>
+      <li><b>Motor infinito:</b> hopper → crisol (calor) → tubería de fluidos Pipez → Magmatic = RF ∞.</li>
+      <li><b>Pasivo:</b> Mechanical Hammer + Sieve con tuberías de items y energía → barril compactador.</li>
     </ol>
   </div>
 
