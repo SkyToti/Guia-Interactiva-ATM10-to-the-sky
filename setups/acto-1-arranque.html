@@ -104,6 +104,20 @@
   .chain .arrow{font-size:22px;color:var(--acc);opacity:.7}
   .chain .op{font-family:var(--font-m);font-size:10.5px;color:var(--muted);text-align:center}
 
+  /* ---- variantes del generador ---- */
+  .vars{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0}
+  .var{display:flex;align-items:center;gap:10px;justify-content:center;background:var(--panel);
+    border:1px solid var(--line);border-radius:12px;padding:12px 10px;box-shadow:var(--shadow)}
+  .var .pair{display:flex;gap:4px}
+  .var .pair img{width:30px;height:30px;border-radius:5px;border:1px solid var(--line-soft)}
+  .var .eq{color:var(--acc);font-size:16px}
+  .var .res{display:flex;flex-direction:column;align-items:center;gap:4px}
+  .var .res img{width:38px;height:38px;border-radius:6px;border:1.5px solid var(--acc)}
+  .var .res small{font-size:10.5px;color:var(--ink-soft);font-weight:600}
+  .fine{font-size:13px;color:var(--muted);margin:6px 0 0}
+  .fine b{color:var(--ink-soft)}
+  img[data-tex="water"]{filter:brightness(.6) sepia(1) hue-rotate(178deg) saturate(4.5)}
+
   /* ---- 3D scene ---- */
   .scene{margin:22px 0 6px;background:
       radial-gradient(120% 90% at 50% 0%, color-mix(in srgb,var(--acc) 8%, var(--panel)), var(--panel));
@@ -295,6 +309,38 @@
       <p>La <b>porcelana</b> aguanta lava y agua de bruja (los buckets normales no), y el
       <b>crisol de porcelana funde el doble de rápido</b> que el de roble. Es la llave del
       siguiente paso: la energía infinita. Fabrica un crisol de porcelana apenas tengas clay.</p></div>
+
+    <div class="divider"></div>
+
+    <p class="lead" style="margin-top:26px"><b>El truco del martillo comprimido</b> — así trabajan
+      los que ya se pasaron el pack: en este modpack casi todo se puede <b>compactar</b> (9 cobble =
+      cobble comprimido). Y Ex Deorum tiene la contraparte:</p>
+
+    <div class="recipes">
+      <div class="rec">
+        <h4>Martillo Comprimido</h4><p class="out">exdeorum:compressed_stone_hammer · 9 martillos en uno</p>
+        <div class="craft">
+          <div class="grid3" data-recipe="chammer"></div>
+          <span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="i_stone_hammer" alt=""></div><small>Martillo<br>Comprimido</small></div>
+        </div>
+      </div>
+    </div>
+
+    <ul class="clean">
+      <li><span class="b">1</span><span>Compacta tu cobble: <b>9 cobble → Cobble Comprimido</b> (receta 3×3,
+        o automático con la <b>Compacting Upgrade</b> de Sophisticated que viste arriba).</span></li>
+      <li><span class="b">2</span><span>Golpéalo con el <b>Martillo Comprimido</b>: <b>1 bloque comprimido →
+        9 grava de un solo golpe</b>. Un click = nueve.</span></li>
+      <li><span class="b">3</span><span>Y existe el <b>Tamiz Comprimido</b>, que cierne bloques comprimidos
+        enteros. Mismo principio: nueve por el precio de un click.</span></li>
+    </ul>
+
+    <div class="trick"><span class="k">TRUCO</span>
+      <p><b>Compactar te sale a cuenta siempre:</b> ocupa 9× menos espacio, se martilla y se cierne en
+      lotes de 9, y cuando necesites el material suelto lo descompactas en la mesa. Trabaja comprimido,
+      descomprime al final. Más adelante el <b>Flux Compactor</b> (Ex Machinis) lo compacta todo con RF,
+      solo, sin que toques nada.</p></div>
   </section>
 
   <!-- PASO 3 -->
@@ -302,17 +348,31 @@
     <div class="step-h"><div class="step-n">3</div><div>
       <span class="tag">El combo estrella · 3 mods trabajando juntos</span>
       <h2>El motor infinito de poder</h2></div></div>
-    <p class="lead">Este es el momento en que dejas de depender del carbón para siempre. Tres
-      bloques de tres mods distintos forman un bucle que se alimenta solo:</p>
+    <p class="lead">Este es el momento en que dejas de depender del carbón para siempre. Pero
+      <b>cuidado con la mecánica</b>, que es justo donde la gente se equivoca: el Generador de Bloques
+      <b>no produce nada solo</b> — necesita sus bloques adyacentes.</p>
 
-    <ul class="clean">
-      <li><span class="b">1</span><span><b>Generador de Bloques</b> (Cobble Gen Galore) produce
-        <b>cobble solo</b>, pasivamente, de la nada.</span></li>
-      <li><span class="b">2</span><span>El cobble cae en el <b>Crisol de porcelana</b> (Ex Deorum),
-        que — con calor debajo — lo <b>funde en lava</b>: <b>250 mb por cobble</b>.</span></li>
-      <li><span class="b">3</span><span>Esa lava va al <b>Magmatic Generator</b> (Generator Galore),
-        que la <b>quema y genera RF</b>. Energía infinita, sin tocar nada.</span></li>
-    </ul>
+    <div class="note"><b>Cómo funciona de verdad el Generador de Bloques</b> (Cobble Gen Galore):
+      es como un cobble gen vanilla metido en un bloque. Le pones un bloque <b>a cada lado</b> y él
+      genera en medio, sin desgastarse. Lo que produce <b>depende de qué bloques le pongas</b>:</p>
+
+    <div class="vars">
+      <div class="var"><div class="pair"><img data-tex="water" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="cobblestone" alt=""><small>Cobblestone</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="packed_ice" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="deepslate" alt=""><small>Deepslate</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="lava" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="netherrack" alt=""><small>Netherrack*</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="water" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="obsidian" alt=""><small>Obsidiana*</small></div></div>
+    </div>
+    <p class="fine">* Algunos (piedra, obsidiana, netherrack, andesita…) piden además un <b>bloque
+      "modifier"</b> adyacente — el mismo bloque que quieres generar — y consumen uno de los dos lados.
+      Para el arranque nos basta el <b>cobblestone: agua + lava</b>, sin modifier y sin consumir nada.</p>
+
+    <p><b>El Generador "Stone"</b> (el que crafteas con piedra suave + vidrio) es el <b>tier básico</b>:
+      define la velocidad. Los tiers <b>cobre → hierro → oro → diamante → netherite</b> son el mismo
+      bloque, solo más rápidos. Así se pone el de cobble:</p>
 
     <div class="scene">
       <div class="stage" id="scene1"></div>
@@ -325,35 +385,27 @@
         <button data-act="reset">Reset</button>
       </div>
     </div>
-    <p class="cap">Gíralo y pasa el cursor por cada bloque. En línea: <b>Generador de Bloques →
-      Crisol</b> (con lava fundida, y la fuente de calor debajo) <b>→ Magmatic Generator</b>.</p>
+    <p class="cap"><b>Agua</b> a un lado, <b>Generador</b> en medio, <b>Lava</b> al otro — y el
+      almacenamiento va <b>ENCIMA</b>: fíjate que la textura de arriba del generador tiene un
+      <b>hueco</b> — ese es su output. Gíralo y pasa el cursor.</p>
 
-    <div class="note"><b>El arranque del huevo y la gallina:</b> el crisol necesita <b>calor debajo</b>
-      para fundir (antorcha = lento, lava = ×3, fuego = ×5). Como al principio no tienes lava, arranca
-      con <b>antorchas o una fogata de netherrack</b> debajo; en cuanto el crisol saque su primera lava,
-      deja un poco por debajo como fuente de calor y ya se sostiene solo.</p>
+    <div class="note"><b>¿Y las variantes con "modifier"?</b> El bloque modificador (piedra, andesita,
+      obsidiana…) va <b>DEBAJO</b> del generador. Lo confirma el propio libro de misiones (la quest de
+      Darkstone): <i>"Place Witch Water and Lava next to the Block Generator, with an Arcane Crystal
+      Block underneath"</i>. Lados = fluidos · abajo = modifier · arriba = salida.</div>
 
     <div class="trick"><span class="k">TRUCO</span>
-      <p>El <b>Generador de Bloques</b> no solo hace piedra: hay versiones de <b>hierro, cobre, oro…</b>
-      que producen esos bloques pasivamente. Es un <b>segundo motor de recursos</b> además del tamiz.
-      Y ojo: los generadores <b>8× y 64×</b> de Generator Galore producen más pero también
-      <b>consumen más lava</b> — escala el crisol antes de subirlos de tier.</p></div>
-  </section>
+      <p>Arriba le puedes poner <b>lo que quieras que tenga inventario</b>: un <b>cajón (drawer) 1×1
+      de roble</b>, un <b>cajón compactador</b> de Functional Storage (guarda nugget/lingote/bloque en
+      una ranura), un <b>barril o cofre de Sophisticated Storage</b>… Y a los de Sophisticated les cabe
+      la <b>Compacting Upgrade</b> (2×2) o la <b>Advanced Compacting Upgrade</b> (3×3), que <b>compactan
+      solos</b> lo que entra. Cobble → cobble comprimido, automático y sin gastar un tick tuyo.</p></div>
 
-  <!-- PASO 4 -->
-  <section class="step reveal">
-    <div class="step-h"><div class="step-n">4</div><div>
-      <span class="tag">Cierra el bucle · hazlo 100% pasivo</span>
-      <h2>Que las máquinas trabajen por ti</h2></div></div>
-    <p class="lead">Ya tienes energía. Ahora usa esa RF para <b>dejar de clickear el tamiz a mano</b>.
-      <b>Ex Machinis Deorum</b> te da versiones mecánicas que corren con RF:</p>
+    <div class="divider"></div>
 
-    <ul class="clean">
-      <li><span class="b">→</span><span>El <b>Martillo Mecánico</b> tritura el cobble solo (cobble→grava→arena).</span></li>
-      <li><span class="b">→</span><span>El <b>Tamiz Mecánico</b> cierne lo que le llega, con su malla puesta.</span></li>
-      <li><span class="b">→</span><span>La salida cae a un <b>barril de Sophisticated Storage</b> con
-        mejoras de <b>imán</b> y <b>apilado</b>: se llena solo desde lejos.</span></li>
-    </ul>
+    <p class="lead" style="margin-top:26px">Ya tienes cobble infinito. Ahora conviértelo en
+      <b>energía</b>: el cobble alimenta el <b>Crisol</b>, que lo funde en <b>lava</b>, que quema el
+      <b>Magmatic Generator</b>.</p>
 
     <div class="scene">
       <div class="stage" id="scene2"></div>
@@ -366,8 +418,65 @@
         <button data-act="reset">Reset</button>
       </div>
     </div>
-    <p class="cap">Gíralo y pasa el cursor. <b>Martillo</b> y <b>Tamiz Mecánicos</b> alimentados por el
-      <b>Magmatic Generator</b>; la salida cae al <b>Barril</b> detrás del tamiz.</p>
+    <p class="cap"><b>Crisol de porcelana</b> (lava fundida dentro, <b>calor debajo</b>) →
+      <b>Tubería de Fluidos de Pipez</b> → <b>Magmatic Generator</b>. Ponerlos pegados NO basta:
+      el generador tiene tanque interno y la lava hay que <b>tubearla</b>.</p>
+
+    <div class="note"><b>Las conexiones — esto es lo que casi nadie te dice:</b> el cobble entra al
+      crisol <b>por arriba</b> (un <b>hopper</b> desde el cajón del generador basta). El crisol guarda
+      la lava como <b>fluido</b>, y el Magmatic Generator <b>no la jala solo</b>: necesitas una
+      <b>Tubería de Fluidos de Pipez</b> — la más barata del pack: <b>3 hierro + 2 cubetas +
+      1 redstone = 16 tuberías</b>. Conéctala del crisol al generador y pon la conexión del lado del
+      crisol en modo <b>Extract</b>. Esa es tu primera logística de fluidos, y Pipez va a ser tu navaja
+      suiza: tiene tubería de <b>items</b>, <b>fluidos</b> y <b>energía</b>, todas igual de baratas.</div>
+
+    <div class="note"><b>El arranque del huevo y la gallina:</b> el crisol necesita <b>calor debajo</b>
+      para fundir (antorcha ×1, lava ×3, fuego ×5). Como al principio no tienes lava, arranca con
+      <b>antorchas o fuego de netherrack</b> debajo; deja un poco de la lava que produzca como fuente
+      de calor y ya se sostiene solo.</p>
+
+    <div class="trick"><span class="k">TRUCO</span>
+      <p>El <b>Crisol de porcelana</b> funde el doble de rápido que el de roble. Y ojo con escalar: los
+      generadores <b>8× y 64×</b> de Generator Galore producen mucho más pero <b>consumen más</b> — pon
+      más crisoles antes de subir de tier, o el cuello de botella será fundir, no generar.</p></div>
+  </section>
+
+  <!-- PASO 4 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">4</div><div>
+      <span class="tag">Cierra el bucle · hazlo 100% pasivo</span>
+      <h2>Que las máquinas trabajen por ti</h2></div></div>
+    <p class="lead">Ya tienes energía. Ahora usa esa RF para <b>dejar de clickear el tamiz a mano</b>.
+      El propio <b>Ex Deorum</b> trae las máquinas (y <b>Ex Machinis</b> añade las versiones "Flux",
+      aún más rápidas, para después):</p>
+
+    <ul class="clean">
+      <li><span class="b">→</span><span>El <b>Mechanical Hammer</b> (Ex Deorum) tritura con FE. Truco del
+        propio mod: <b>ponle un martillo en su slot y va al doble</b>; con encantamiento de eficiencia,
+        más rápido todavía.</span></li>
+      <li><span class="b">→</span><span>El <b>Mechanical Sieve</b> (Ex Deorum) cierne con FE — necesita su
+        <b>malla</b> en el slot, igual que el manual.</span></li>
+      <li><span class="b">→</span><span>Entre máquinas, <b>Tuberías de Items de Pipez</b> (modo Extract en
+        la salida de cada una). La energía del generador llega a los bloques <b>adyacentes</b>; si están
+        lejos, <b>Tubería de Energía de Pipez</b>.</span></li>
+      <li><span class="b">→</span><span>Al final, un <b>barril de Sophisticated Storage</b> — ya sabes:
+        con <b>Compacting Upgrade</b> se compacta solo.</span></li>
+    </ul>
+
+    <div class="scene">
+      <div class="stage" id="scene3"></div>
+      <div class="ctrls" data-for="scene3">
+        <button data-act="left">⟲ Izq</button>
+        <button data-act="right">Der ⟳</button>
+        <button data-act="top">Vista superior</button>
+        <button data-act="zin">Zoom +</button>
+        <button data-act="zout">Zoom −</button>
+        <button data-act="reset">Reset</button>
+      </div>
+    </div>
+    <p class="cap">La línea del frente: <b>Mechanical Hammer → tubería de items → Mechanical Sieve →
+      tubería de items → Barril</b>. Detrás: el <b>Magmatic Generator</b> con <b>tuberías de energía</b>
+      repartiendo el FE a las dos máquinas. Nada está "pegado por magia": cada conexión es una tubería.</p>
 
     <div class="trick"><span class="k">EL CIERRE</span>
       <p>Fíjate en el bucle completo: la <b>RF</b> mueve las máquinas, que procesan los <b>bloques</b>,
@@ -387,8 +496,10 @@
       <li><b>Primera malla</b> de string (silkworms → hilo) montada en el tamiz.</li>
       <li><b>Cadena de trituración</b> corriendo: cobble → grava → arena → polvo.</li>
       <li><b>Clay y porcelana:</b> polvo+agua → clay → crisol de porcelana.</li>
-      <li><b>Motor infinito:</b> Generador de Bloques → Crisol → Magmatic Generator = RF ∞.</li>
-      <li><b>Automatizado:</b> martillo + tamiz mecánicos + barril de salida.</li>
+      <li><b>Generador de cobble:</b> agua a un lado + lava al otro, y el cajón/barril <b>ENCIMA</b> (ahí está su output).</li>
+      <li><b>Martillo comprimido:</b> 9 martillos → 1 comprimido; trabaja con bloques compactados (9 por golpe).</li>
+      <li><b>Motor infinito:</b> hopper de cobble al Crisol (calor debajo) → <b>tubería de fluidos Pipez</b> → Magmatic Generator = RF ∞.</li>
+      <li><b>Automatizado:</b> Mechanical Hammer (con martillo dentro) + Mechanical Sieve (con malla), unidos con <b>tuberías de items Pipez</b> y energía del generador.</li>
       <li><b>Sube las mallas</b> de tier cuando puedas (flint → hierro → …).</li>
     </ol>
   </div>
@@ -443,6 +554,18 @@ const TEX = {
   "gen_stone_top":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Mzg5OThDRUE1RDQ2MTFFRjg0Q0JGNzkyRTc2NTdBNDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Mzg5OThDRUI1RDQ2MTFFRjg0Q0JGNzkyRTc2NTdBNDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozODk5OENFODVENDYxMUVGODRDQkY3OTJFNzY1N0E0MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozODk5OENFOTVENDYxMUVGODRDQkY3OTJFNzY1N0E0MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtQ0bK4AAAFSSURBVHjajJJNjoJAEIUZaAgECCa6IZzAC4wLknHjvbyXYenaOQVxhZIQEXEznzymM3E1FfJSVL/66Vf9sd/vb7dbHMeO4+CARVGAdV3/9SEsFou2bV2xRVXaG1U+BNjkGBVer9c4QRCAvu8/n0+c1WqlXzDP8/P5TL5R+eVySbTrOh2DYRg6kw3DAFICNq0MXRRVVdB2UI6QCOxXB+XZ1rLv0wn83GzgjePIqKCu7ipPlWSHw+FyvfJVVUUV2GA8GcO7VoSmabgDpPv9/ng8+r4neDweNQ+FpKeLWIS4ND9pmgbTYJ7nUfiFvxpwSa3ClcCSAmTuKIrwjTFJknxtt1IMmxenPViJsLIsOcuyDEfqMSrOvDhd5U3+3W5nl2CDWsC8B3WwymqDCiIoFfUIXglqpGMx3jatI9WCbPTs7PokmtrqVwQ9Tfz5Dv9hK/4jwADO+wfZgOfLPAAAAABJRU5ErkJggg==",
   "gen_stone_side":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDNDMkQyQjA1RDQ2MTFFRkEzRkJEREMzQ0JDNERCQjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDNDMkQyQjE1RDQ2MTFFRkEzRkJEREMzQ0JDNERCQjYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0M0MyRDJBRTVENDYxMUVGQTNGQkREQzNDQkM0REJCNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0M0MyRDJBRjVENDYxMUVGQTNGQkREQzNDQkM0REJCNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrdAnOwAAAEfSURBVHjalJNLCoRADETboRVBBEE34gk8pacVt4IIogtnKvCaMJ/FBJqkO7+yErNpmu5930NVVUEiWzIMg+l5nj/uim2aJqzrGh4kk0ihb4ncFatkFYl0Hccxk10UhQXmeR6u6zK767r0Jun7PizLcqtopHvbtubcti0FSpdlGZDjOEyrsJKFJgoGTjpKewQUQetdyYaASh4iwp3i53naJ0pD5oNKdOAoAZtiSpZWIp8ePbM6dJAWH76rtArXdR2YXmQcIlFQ1RHI6uYJ5U1+diEyfxhGI34K/s4ipT14Z16QdbjjIy4tEmT8mr3fAe9j/GkPfCeEpfKoIBpJJHqIfg88Gk+kxDiAxNcu3CyUHB4mb8Ty09keYPybjP8pwAA+LQHteM9gfQAAAABJRU5ErkJggg==",
   "gen_stone_bottom":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0NDRTgyNUI1RDQ2MTFFRkI4REY4MDYzRDM5MjdBNTYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0NDRTgyNUM1RDQ2MTFFRkI4REY4MDYzRDM5MjdBNTYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozQ0NFODI1OTVENDYxMUVGQjhERjgwNjNEMzkyN0E1NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozQ0NFODI1QTVENDYxMUVGQjhERjgwNjNEMzkyN0E1NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrA+DcYAAAEMSURBVHjajJJBioRADEWdppQGEQTdiCfwlJ5W3AoiiG7m6ZPQ9Gwmi28q9ZNU8v0Zx3HbtrIssyzDAfu+B6dp+vQh1HW9LMtLtlTTvqj6EGCTkyw8DANOURRgnufneeK0besR7Lpunmfyk+WbpiG6rqvX4Pv9zm7b9x2kBGxaJboYtSoYHcwRicC+OpgXrTV9qxzHwVNBR3+ZZyUNko6ZsMHyNh6fYgmYlUCGicIgJaqqcp/JZTE0D6Cqz8hvi42BxJUiqYCrELXYUvgK9+jwuZzjNn2D3j7COcrf9YcIEVSAR4eoJ08Fo6H78OoZOlqHDtEq5sa/ZnDokI9QdPcowV/z0sHPf9jGfwUYAPpq/uDSiwEIAAAAAElFTkSuQmCC",
+  "water":"data:image/png;base64,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",
+  "obsidian":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAD1BMVEU7J1QnHj0QDBwGAwsAAAFbDTSxAAAAaUlEQVR42gVAARGAMAj8mUA3AzhYAOUJoED/TB68Ut/xNLiFb9wVhfPpaybePs3KHJ+sqmRCVpCNBbG9+ekJvySq3hPVZI7qgl56aBihTmPph+Cyu4ng3kJ2vRSHMoQ+8FGHLU9o5FwkfyEoFb7iY82bAAAAAElFTkSuQmCC",
+  "packed_ice":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAElBMVEXI3P+81P+hw/+Suf6Frfh8pfReFhTfAAAAaklEQVR42hXLURWEMAwEwH1IOAc0RQDZYIBsFLTxb+Ue8z/odIs1Lmz+xHc28r5yqhucPUotMDqaSQSjFt0gKskhtF5Lt8JOe3R+nax1VMM8+n72hlstq50Y0YpOYmgrI4kppQdPSORIP/5Llx0+IzbRVQAAAABJRU5ErkJggg==",
+  "blue_ice":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAD1BMVEWpyP+OuP50q/5so/1rnfup7hzOAAAAaUlEQVR42hXJ0Q3DQAgE0b0OAkkBuYUGDDSQg/5riv0x0pMGHazz0sSk1Sx7kFHbGlUhflUj56seFbCW5X0IP6KfEaIu4bNRW5n2W0i+mWxDm7FsDHNruhJ3PcFCJqtJR4b4IRW51TfF/jNkFbTHymVnAAAAAElFTkSuQmCC",
+  "netherrack":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAFVBMVEWFQkJyMjJlKChXISFQGxtRFRVBFhZSHStNAAAAe0lEQVR42g3JsRGDMBAEwIMK9A8UcNKrABgPud6IHIzJ7VH/NdibLl6XSfwyYUm7j3esUF2vVI3oaDOH0xHUQy8l4UgHxKLiHD/Uyg7D7fpWB4xWo2TCgzZyujBTW5C9wYrdJbcHTi15O5j/FaZtCRNc+udORmwcubrEH0CdFhUpwFc0AAAAAElFTkSuQmCC",
+  "deepslate":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAElBMVEV6enppaWlaWlpKSk8/P0U1NTnf4I6sAAAAdUlEQVR42gVAQRLCIAzc2j7AIT6AAXpXSO7WkLul4f9f6aCdeqB+Enjwn/TImG4n++jQJVUxdyA0txlXBOIrEgoC27kWYvC0I0sW4FUrSzeE0pLaTCBR5UgV2ab3VRoK23PLwjAtDxI32HsLVX4N+3e/+ojLDSfPGK0cTn8xAAAAAElFTkSuQmCC",
+  "fs_oak_front":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAMo2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4xLWMwMDAgNzkuYTg3MzFiOSwgMjAyMS8wOS8wOS0wMDozNzozOCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMy4wIChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMDgtMTdUMTI6MjA6MjMrMDI6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIxLTEyLTE4VDE4OjA1OjAyKzAxOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTEyLTE4VDE4OjA1OjAyKzAxOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpkMTgwYjViMi1kMDU3LTNjNGMtYmNjYi04NjEzNzc3ZjJiM2QiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpkZGU2ZTY2Zi01M2MwLWE5NDUtOGViOC1hODRjNzI3MTE4ZDYiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDphYzg4YTM5Mi1kZTJiLTUwNDgtOTE1MS0wMmIwZmJhY2E0NTUiPiA8cGhvdG9zaG9wOkRvY3VtZW50QW5jZXN0b3JzPiA8cmRmOkJhZz4gPHJkZjpsaT5hZG9iZTpkb2NpZDpwaG90b3Nob3A6NjRmOGRmYjYtNTdmZS05NzRmLWI0MGUtNTQ3M2JhNmFlMGQyPC9yZGY6bGk+IDxyZGY6bGk+eG1wLmRpZDo2YmY5Y2ZhYS0wNTUwLWI5NGYtYjNmOC1hNmI4Mzc1MTgwNTg8L3JkZjpsaT4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDphYzg4YTM5Mi1kZTJiLTUwNDgtOTE1MS0wMmIwZmJhY2E0NTUiIHN0RXZ0OndoZW49IjIwMjEtMDgtMTdUMTI6MjA6MjMrMDI6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4wIChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6OGQzMDRiZDQtODYyYi1kZjQ3LTljMjktZTZiNmVjZTkwOTViIiBzdEV2dDp3aGVuPSIyMDIxLTEyLTE4VDE3OjA4OjA3KzAxOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjMuMCAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmRjODhlZDEwLTg5ZjAtZjE0NS1iMzM0LTkwYmIyMmI1MTkzOSIgc3RFdnQ6d2hlbj0iMjAyMS0xMi0xOFQxNzoxNjozOSswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIzLjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjb252ZXJ0ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImZyb20gaW1hZ2UvcG5nIHRvIGFwcGxpY2F0aW9uL3ZuZC5hZG9iZS5waG90b3Nob3AiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImRlcml2ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImNvbnZlcnRlZCBmcm9tIGltYWdlL3BuZyB0byBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo2YmY5Y2ZhYS0wNTUwLWI5NGYtYjNmOC1hNmI4Mzc1MTgwNTgiIHN0RXZ0OndoZW49IjIwMjEtMTItMThUMTc6MTY6MzkrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4wIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YjA3MDYxM2QtMTkyMC1lZDQxLTkzMjEtYWExOGNjZTkzMjRmIiBzdEV2dDp3aGVuPSIyMDIxLTEyLTE4VDE4OjA1OjAyKzAxOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjMuMCAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL3BuZyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iZGVyaXZlZCIgc3RFdnQ6cGFyYW1ldGVycz0iY29udmVydGVkIGZyb20gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBob3Rvc2hvcCB0byBpbWFnZS9wbmciLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmQxODBiNWIyLWQwNTctM2M0Yy1iY2NiLTg2MTM3NzdmMmIzZCIgc3RFdnQ6d2hlbj0iMjAyMS0xMi0xOFQxODowNTowMiswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIzLjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpiMDcwNjEzZC0xOTIwLWVkNDEtOTMyMS1hYTE4Y2NlOTMyNGYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NmJmOWNmYWEtMDU1MC1iOTRmLWIzZjgtYTZiODM3NTE4MDU4IiBzdFJlZjpvcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6YWM4OGEzOTItZGUyYi01MDQ4LTkxNTEtMDJiMGZiYWNhNDU1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+QiY2XwAAAZZJREFUKJFNksGO0zAQhv+mCRvbcurFpFJatQgVVUgcuPIEHHgJnnAfYN+ERSoXDjlEqaxGcbyabeEwxhsfLI/l+ef/xrP48f1zP5DVRW1U50Y+A6iN+vnH8TldAsj7gb59PU7kAbxQ2GxXRpWikAD22zXfc6hXi4fHp5xTv3zcATi+t6KQE3k3BtbTUEaVnFNKYfXvHEDrznq1MKp0Y4BCep1K8QrkAeQADk0N3GylbaUB2Eqf2u7Q1PzOT1c2RpRFBj9dj2vbXwY3BlY1qjy1XSrCde6l6AfKrS5ad95thCgkFNjh3BLLuzEoklYX+dwru48w/5sTDwpC3kUGW2kpln66ckMSDC8pNO+3xZvI0F8GP5kkyTDJFYO5MSglI8PcaBLmanOH69V9ZGBtzkmgiUcUUpjX38j6gbgtttKHpk70h6Y+NLWtdOvOUiwBiDKLlri6n66cyeGp7RrzlsP4d8PfaGn9Tl0oVPLuw2YbyF/88/Lltt/veByIMqIAZOSfY1sfHp/S9L6O969uPt6fdqZzI4B/vlfbnn/Chw4AAAAASUVORK5CYII=",
+  "fs_oak_side":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAMo2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4xLWMwMDAgNzkuYTg3MzFiOSwgMjAyMS8wOS8wOS0wMDozNzozOCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMy4wIChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMDgtMTdUMTI6MjA6MjMrMDI6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIxLTEyLTE4VDE4OjAwOjA4KzAxOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTEyLTE4VDE4OjAwOjA4KzAxOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyMzU5NzBiYi01ODg3LWZlNDYtOTNkNC03MmViMGZmNGVlNGIiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDoyNzQ4MTFiMC05MDViLWFkNDgtOTA2YS0wYmQ2YTBhMGM3ZWYiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDphYzg4YTM5Mi1kZTJiLTUwNDgtOTE1MS0wMmIwZmJhY2E0NTUiPiA8cGhvdG9zaG9wOkRvY3VtZW50QW5jZXN0b3JzPiA8cmRmOkJhZz4gPHJkZjpsaT5hZG9iZTpkb2NpZDpwaG90b3Nob3A6NjRmOGRmYjYtNTdmZS05NzRmLWI0MGUtNTQ3M2JhNmFlMGQyPC9yZGY6bGk+IDxyZGY6bGk+eG1wLmRpZDo2YmY5Y2ZhYS0wNTUwLWI5NGYtYjNmOC1hNmI4Mzc1MTgwNTg8L3JkZjpsaT4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDphYzg4YTM5Mi1kZTJiLTUwNDgtOTE1MS0wMmIwZmJhY2E0NTUiIHN0RXZ0OndoZW49IjIwMjEtMDgtMTdUMTI6MjA6MjMrMDI6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4wIChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6OGQzMDRiZDQtODYyYi1kZjQ3LTljMjktZTZiNmVjZTkwOTViIiBzdEV2dDp3aGVuPSIyMDIxLTEyLTE4VDE3OjA4OjA3KzAxOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjMuMCAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmRjODhlZDEwLTg5ZjAtZjE0NS1iMzM0LTkwYmIyMmI1MTkzOSIgc3RFdnQ6d2hlbj0iMjAyMS0xMi0xOFQxNzoxNjozOSswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIzLjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjb252ZXJ0ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImZyb20gaW1hZ2UvcG5nIHRvIGFwcGxpY2F0aW9uL3ZuZC5hZG9iZS5waG90b3Nob3AiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImRlcml2ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImNvbnZlcnRlZCBmcm9tIGltYWdlL3BuZyB0byBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo2YmY5Y2ZhYS0wNTUwLWI5NGYtYjNmOC1hNmI4Mzc1MTgwNTgiIHN0RXZ0OndoZW49IjIwMjEtMTItMThUMTc6MTY6MzkrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4wIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6Y2EwMzhjN2QtMzMyZi05MzQwLTk1M2YtMmM4MTRmMGU0NDgwIiBzdEV2dDp3aGVuPSIyMDIxLTEyLTE4VDE4OjAwOjA4KzAxOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjMuMCAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL3BuZyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iZGVyaXZlZCIgc3RFdnQ6cGFyYW1ldGVycz0iY29udmVydGVkIGZyb20gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBob3Rvc2hvcCB0byBpbWFnZS9wbmciLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjIzNTk3MGJiLTU4ODctZmU0Ni05M2Q0LTcyZWIwZmY0ZWU0YiIgc3RFdnQ6d2hlbj0iMjAyMS0xMi0xOFQxODowMDowOCswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIzLjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpjYTAzOGM3ZC0zMzJmLTkzNDAtOTUzZi0yYzgxNGYwZTQ0ODAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NmJmOWNmYWEtMDU1MC1iOTRmLWIzZjgtYTZiODM3NTE4MDU4IiBzdFJlZjpvcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6YWM4OGEzOTItZGUyYi01MDQ4LTkxNTEtMDJiMGZiYWNhNDU1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+QdwrFAAAAb9JREFUKJF1Uj2LVDEUPfORJfc+MmYNszIM7jIgg7KirWxlZWFvKbb7S/wF4n8QbG0XOxsL7ZbFKZYtBnbI+JjsSx7EN1rcISuIKcI9eefmnHNfem9eHvuQnVFjW63qRmoAY1udX9VSl0MAQx/yi2dzAYdTpBxJMQCmweH0oEAA8yP37sOXobTeefzqXjhLOZJyKce6aYGt2esZVLbSF5d+dnK6/+uzM2oo3durjzwZM5mYOlJMloFbtacPGNefEhOAoagDW+lkGgDwm+BGhskAiKmTZuTfuwwxdfMDF1OXcgQgty6WKwC20gJJsVbkQ+47o1KOQpUlta20sOXrsl4DcEb1hVRGUTet7HXTlkNSbCvd5rjL4EaGaSBebaXdyLiRKYKShMlse3u7DH4TYrJFx28C/ll1007G+z7koTNKjMoulkSqsElxjVYrvv0PxW4J+jcbwMTeFdj3IQP4/uOKaeBGpgxRkkg8psHFpSfd340VwOzkNKZusVwt67UMcbFcxdTF1PlN+HZ+/fz129Rud5bmR07fnIFpxtM2R62YOGrFpPs/ww0pevLIrb++F0u98rwF/+95P7xvV3UD4A9E+uQruCPeogAAAABJRU5ErkJggg==",
+  "fs_comp_front":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAFyWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4xLWMwMDAgNzkuYTg3MzFiOSwgMjAyMS8wOS8wOS0wMDozNzozOCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIzLjAgKFdpbmRvd3MpIiB4bXA6Q3JlYXRlRGF0ZT0iMjAyMS0xMi0xOVQyMzoyMTowNCswMTowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMS0xMi0xOVQyMzoyMTowNCswMTowMCIgeG1wOk1vZGlmeURhdGU9IjIwMjEtMTItMTlUMjM6MjE6MDQrMDE6MDAiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OGE4NTI2MDMtZDNkNy05MTQ4LTk5ODItODI4NzNlZjZjY2I4IiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6ZDY1MzQ3ZDUtNTQ4MS03OTQwLWI4MmUtMjI3YzJmY2MxNGZhIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6ZWIwZmU0NTctMWJhYy0wNTRlLTg5OGMtMzcyZjlkMWJhNDg5IiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ZWIwZmU0NTctMWJhYy0wNTRlLTg5OGMtMzcyZjlkMWJhNDg5IiBzdEV2dDp3aGVuPSIyMDIxLTEyLTE5VDIzOjIxOjA0KzAxOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjMuMCAoV2luZG93cykiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjhhODUyNjAzLWQzZDctOTE0OC05OTgyLTgyODczZWY2Y2NiOCIgc3RFdnQ6d2hlbj0iMjAyMS0xMi0xOVQyMzoyMTowNCswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIzLjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Phkm+iwAAAE2SURBVCiRZVGxqsMwDFQfQpgOxlAT6BLIkm75uH5C/6Uf0tH/okFkCMJ0eMMVYVoNQb6cfPLd6fF40E+ZGZpSCvpSChAmommaiCilFAPzPLs7kGma0Fyv19Yam9k8z7fbDdTeOxGJSO9dROKK3nuttbXGROTu4KHc3d2jh7i7H8dhZozl8CPnHDyQ8A2pUgqDl1IKFE0ccYuIAGEiulwu0Im9mVlEzufz+AaszWbWWjOzMC6cBTJa/FEwM1Ud2UH9wj8D67qu6xo5LMvyer2IaNu2MAA5PJ9PVtVt28YckK6qisiyLGMOHwXkICL7vqeUMBMhEtG+70R0HEetlTE3JgW2qkagsa2q/qlq5JBzzjkzs5nVWsGToYiIa61fObzf73h9eI0caq2n+/0OrTAOS36VqgL/B/tVwI3w07oFAAAAAElFTkSuQmCC",
+  "pipe_item":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAhklEQVR4nGPQ1lb5j44ZsACQuIWFwf8vDxzBGMQGqwUx0DE2A0Dizs5WcANAbLBamAAyxmYATO7ZBV4whqul2ACKvUBxIOLSgK4Rm+3wWMBnAExzaKgX3AAQG+4FEAefATDNRUXJcANAbJghDLhCHQaQYwc9BuDRSJEBFHuB4kCkOBoHHAAAZXI5jkKdB54AAAAASUVORK5CYII=",
+  "pipe_fluid":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAhklEQVR4nGNQ0dL+j44ZsACQuL6Z+X/Hl1/AGMQGqwUx0DE2A0DiVk7OcANAbLBamAAyxmYATI735jMwhqul2ACKvUBxIOLSgK4Rm+3wWMBnAEyzZ1Aw3AAQG+4FEAefATDNyYVFcANAbJghDLhCHQaQYwc9BuDRSJEBFHuB4kCkOBoHHAAALN061iRvisoAAAAASUVORK5CYII=",
+  "pipe_energy":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAhUlEQVR4nGPQVlX5j44ZsACQuLmh/v8v2Y5gDGKD1YIY6BibASBxZxsruAEgNlgtTAAZYzMAJvfMgReM4WopNoBiL1AciLg0oGvEZjs8FvAZANMc7O0JNwDEhnsBxMFnAExzUVoy3AAQG2YIA65QhwHk2EGPAXg0UmQAxV6gOBApjsYBBwBp8Bq07DO5pwAAAABJRU5ErkJggg==",
 };
 
 /* ============================================================
@@ -499,7 +622,7 @@ function expand(boxes){
       cy: b.y + (f[1]+t[1])/32 - 0.5,
       cz: b.z + (f[2]+t[2])/32 - 0.5,
       hx: (t[0]-f[0])/32, hy: (t[1]-f[1])/32, hz: (t[2]-f[2])/32,
-      tex: b.tex, glow: b.glow, group: (b.group!=null?b.group:i), o:i
+      tex: b.tex, glow: b.glow, tint: b.tint, group: (b.group!=null?b.group:i), o:i
     };
   });
 }
@@ -570,18 +693,23 @@ function buildScene(id, boxes, opt){
         if(pickMode){ flat(c2, p[0],p[1],p[2], idc); continue; }
         const img = IMG[texKey(b,f.k)];
         if(!img || !img.complete || !img.naturalWidth) continue;
-        quad(c2, img, p[0],p[1],p[2], b.glow?0:f.dark);
+        quad(c2, img, p[0],p[1],p[2], b.glow?0:f.dark, b.tint);
       }
     }
     c2.setTransform(1,0,0,1,0,0);
   }
-  function quad(c2, img, P0,P1,P3, dark){
+  function quad(c2, img, P0,P1,P3, dark, tint){
     const iw=img.naturalWidth, ih=img.naturalHeight;
     if(!iw||!ih) return;
     const sh = ih>iw ? iw : ih;                 // texturas animadas: solo el 1er cuadro
     c2.setTransform((P1.x-P0.x)/iw,(P1.y-P0.y)/iw,(P3.x-P0.x)/sh,(P3.y-P0.y)/sh,P0.x,P0.y);
     c2.globalAlpha = 1;
     c2.drawImage(img, 0,0,iw,sh, -0.5,-0.5, iw+1, sh+1);
+    if(tint){ // teñir texturas en escala de grises (agua) con multiply
+      c2.globalCompositeOperation = "multiply";
+      c2.fillStyle = tint; c2.fillRect(-0.5,-0.5,iw+1,sh+1);
+      c2.globalCompositeOperation = "source-over";
+    }
     if(dark>0){ c2.globalAlpha = dark; c2.fillStyle = "#000"; c2.fillRect(-0.5,-0.5,iw+1,sh+1); c2.globalAlpha=1; }
   }
   function flat(c2, P0,P1,P3, color){
@@ -658,15 +786,21 @@ function buildScene(id, boxes, opt){
 
 /* ===== nombres para el tooltip (por grupo) ===== */
 const NAMES = {
-  0:{n:"Generador de Bloques", m:"Cobble Gen Galore · produce cobble solo"},
-  1:{n:"Crisol de Porcelana",  m:"Ex Deorum · funde el cobble en lava"},
-  2:{n:"Lava fundida",         m:"250 mb por cada cobble"},
-  3:{n:"Magmatic Generator",   m:"Generator Galore · quema lava → RF"},
-  4:{n:"Lava (fuente de calor)",m:"calienta el crisol · ×3"},
+  0:{n:"Generador de Bloques (Stone)", m:"Cobble Gen Galore · el tier básico define la velocidad"},
+  1:{n:"Crisol de Porcelana",  m:"Ex Deorum · funde cobble → 250mb de lava"},
+  2:{n:"Lava fundida",         m:"dentro del crisol"},
+  3:{n:"Magmatic Generator",   m:"Generator Galore · 40 FE/t · tanque interno de lava"},
+  4:{n:"Lava (fuente de calor)",m:"debajo del crisol · funde ×3"},
   5:{n:"Plataforma",           m:"cobblestone"},
-  6:{n:"Martillo Mecánico",    m:"Ex Machinis Deorum · tritura con RF"},
-  7:{n:"Tamiz Mecánico",       m:"Ex Machinis Deorum · cierne con RF"},
-  8:{n:"Barril de salida",     m:"Sophisticated Storage · imán + apilado"}
+  6:{n:"Mechanical Hammer",    m:"Ex Deorum · FE + un martillo dentro = doble velocidad"},
+  7:{n:"Mechanical Sieve",     m:"Ex Deorum · FE + malla en su slot"},
+  8:{n:"Barril (Sophisticated)", m:"con Compacting Upgrade compacta solo"},
+  9:{n:"Agua (fuente)",        m:"bloque completo a un lado"},
+  10:{n:"Lava (fuente)",       m:"bloque completo al otro lado · agua+lava = cobble"},
+  11:{n:"Cajón de roble 1×1",  m:"Functional Storage · ENCIMA: recibe el output"},
+  12:{n:"Tubería de Fluidos (Pipez)", m:"lleva la lava del crisol al generador"},
+  13:{n:"Tubería de Items (Pipez)",   m:"mueve los items entre máquinas"},
+  14:{n:"Tubería de Energía (Pipez)", m:"reparte el FE del generador"}
 };
 
 /* ===== texturas sueltas en la página (data-tex) ===== */
@@ -676,12 +810,13 @@ document.querySelectorAll("[data-tex]").forEach(el=>{
 });
 
 /* ===== recetas 3x3 ===== */
-const P="oak_planks", R="stick", C="cobblestone", _=null;
+const P="oak_planks", R="stick", C="cobblestone", H="i_stone_hammer", _=null;
 const RECIPES = {
-  barrel: [P,_,P, P,_,P, P,P,P],   // s s / s s / sms  (m = slab de roble)
-  sieve:  [P,_,P, P,P,P, R,_,R],   // O O / O_O / I I
-  crook:  [R,R,_, _,R,_, _,R,_],   // xx / _x / _x
-  hammer: [_,C,_, _,R,C, R,_,_]    //  m  / _sm / s
+  barrel: [P,_,P, P,_,P, P,P,P],
+  sieve:  [P,_,P, P,P,P, R,_,R],
+  crook:  [R,R,_, _,R,_, _,R,_],
+  hammer: [_,C,_, _,R,C, R,_,_],
+  chammer:[H,H,H, H,H,H, H,H,H]    // 9 martillos = martillo comprimido
 };
 document.querySelectorAll("[data-recipe]").forEach(grid=>{
   const cells = RECIPES[grid.getAttribute("data-recipe")] || [];
@@ -694,46 +829,61 @@ document.querySelectorAll("[data-recipe]").forEach(grid=>{
 });
 
 /* ===== helper de caja ===== */
-function B(x,y,z, tex, group, o){ o=o||{}; return {x,y,z, from:o.from, to:o.to, tex, group, glow:o.glow}; }
+function B(x,y,z, tex, group, o){ o=o||{}; return {x,y,z, from:o.from, to:o.to, tex, group, glow:o.glow, tint:o.tint}; }
+/* tubería horizontal entre dos celdas contiguas (a lo largo de X): tubo delgado 6/16 */
+function pipeX(x,y,z, tex, group){ return B(x,y,z, tex, group, {from:[0,5,5], to:[16,11,11]}); }
 
-/* texturas por cara de cada máquina */
+/* texturas por cara */
 const T_GEN = {up:"gen_stone_top", side:"gen_stone_side", down:"gen_stone_bottom"};
 const T_MAG = {up:"mag_top_on", down:"mag_bottom", south:"mag_front", north:"mag_side", east:"mag_side", west:"mag_side"};
 const T_HAM = {up:"mech_hammer_top", down:"mech_hammer_bottom", south:"mech_hammer_front", north:"mech_hammer_side", east:"mech_hammer_side", west:"mech_hammer_side"};
 const T_SIE = {up:"mech_sieve_top", side:"mech_sieve_side", down:"mech_sieve_bottom"};
 const T_BAR = {up:"barrel_top", down:"barrel_bottom", side:"barrel_side"};
+const T_DRW = {south:"fs_oak_front", up:"fs_oak_side", down:"fs_oak_side", north:"fs_oak_side", east:"fs_oak_side", west:"fs_oak_side"};
 
-/* ===== ESCENA 1 — El motor infinito de poder ===== */
+/* ===== ESCENA 1 — Generador de Bloques: agua | gen | lava, cajón ENCIMA ===== */
 const S1 = [
-  // plataforma
-  B(0,0,0,"cobblestone",5), B(2,0,0,"cobblestone",5),
-  B(0,0,1,"cobblestone",5), B(1,0,1,"cobblestone",5), B(2,0,1,"cobblestone",5),
-  // fuente de calor bajo el crisol
-  B(1,0,0,"lava",4,{glow:true}),
-  // máquinas
-  B(0,1,0,T_GEN,0),
-  // crisol (cuerpo + lava dentro, bien visible desde arriba)
-  B(1,1,0,"porcelain_crucible",1,{from:[1,0,1],to:[15,13,15]}),
-  B(1,1,0,"lava",2,{from:[2,9,2],to:[14,13,14],glow:true}),
-  // generador magmático
-  B(2,1,0,T_MAG,3)
-];
-
-/* ===== ESCENA 2 — Hazlo pasivo ===== */
-const S2 = [
   B(0,0,0,"cobblestone",5), B(1,0,0,"cobblestone",5), B(2,0,0,"cobblestone",5),
   B(0,0,1,"cobblestone",5), B(1,0,1,"cobblestone",5), B(2,0,1,"cobblestone",5),
-  B(0,1,0,T_HAM,6),                                  // martillo mecánico
-  B(1,1,0,T_SIE,7,{from:[0,0,0],to:[16,13,16]}),     // tamiz mecánico (más bajo)
-  B(1,1,1,T_BAR,8),                                  // barril de salida
-  B(2,1,0,T_MAG,3)                                   // magmatic generator
+  B(0,1,0,"water",9,{tint:"#3d6ecc"}),   // AGUA a un lado
+  B(1,1,0,T_GEN,0),                      // GENERADOR en medio
+  B(2,1,0,"lava",10,{glow:true}),        // LAVA al otro
+  B(1,2,0,T_DRW,11)                      // CAJÓN ENCIMA: el output sale por arriba
 ];
 
-/* ===== construir escenas cuando el DOM esté listo ===== */
+/* ===== ESCENA 2 — Crisol → tubería de fluidos → Magmatic ===== */
+const S2 = [
+  B(1,0,0,"cobblestone",5), B(2,0,0,"cobblestone",5),
+  B(0,0,1,"cobblestone",5), B(1,0,1,"cobblestone",5), B(2,0,1,"cobblestone",5),
+  B(0,0,0,"lava",4,{glow:true}),                                   // calor DEBAJO del crisol
+  B(0,1,0,"porcelain_crucible",1,{from:[1,0,1],to:[15,13,15]}),    // crisol
+  B(0,1,0,"lava",2,{from:[2,9,2],to:[14,13,14],glow:true}),        // lava fundida dentro
+  pipeX(1,1,0,"pipe_fluid",12),                                    // TUBERÍA de fluidos
+  B(2,1,0,T_MAG,3)                                                 // magmatic generator
+];
+
+/* ===== ESCENA 3 — Línea pasiva: hammer →items→ sieve →items→ barril, energía detrás ===== */
+const S3 = [
+  // plataforma 5x2
+  B(0,0,0,"cobblestone",5), B(1,0,0,"cobblestone",5), B(2,0,0,"cobblestone",5), B(3,0,0,"cobblestone",5), B(4,0,0,"cobblestone",5),
+  B(0,0,1,"cobblestone",5), B(1,0,1,"cobblestone",5), B(2,0,1,"cobblestone",5), B(3,0,1,"cobblestone",5), B(4,0,1,"cobblestone",5),
+  // fila de máquinas (z=1, al frente)
+  B(0,1,1,T_HAM,6),                                   // mechanical hammer
+  pipeX(1,1,1,"pipe_item",13),                        // tubería de items
+  B(2,1,1,T_SIE,7,{from:[0,0,0],to:[16,13,16]}),      // mechanical sieve
+  pipeX(3,1,1,"pipe_item",13),                        // tubería de items
+  B(4,1,1,T_BAR,8),                                   // barril Sophisticated
+  // energía por detrás (z=0): generador + tubería de energía tocando ambas máquinas
+  B(1,1,0,T_MAG,3),
+  pipeX(0,1,0,"pipe_energy",14),
+  pipeX(2,1,0,"pipe_energy",14)
+];
+
+/* ===== construir escenas ===== */
 function boot(){
-  buildScene("scene1", S1, {spin:-32, tilt:33, zoom:1.2, unit:34});
-  buildScene("scene2", S2, {spin:-32, tilt:33, zoom:1.15, unit:34});
-  // reveal on scroll
+  buildScene("scene1", S1, {spin:-30, tilt:30, zoom:1.15, unit:34});
+  buildScene("scene2", S2, {spin:-32, tilt:33, zoom:1.2, unit:34});
+  buildScene("scene3", S3, {spin:-26, tilt:30, zoom:1, unit:30});
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 }

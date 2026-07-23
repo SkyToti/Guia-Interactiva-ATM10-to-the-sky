@@ -104,6 +104,20 @@
   .chain .arrow{font-size:22px;color:var(--acc);opacity:.7}
   .chain .op{font-family:var(--font-m);font-size:10.5px;color:var(--muted);text-align:center}
 
+  /* ---- variantes del generador ---- */
+  .vars{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0}
+  .var{display:flex;align-items:center;gap:10px;justify-content:center;background:var(--panel);
+    border:1px solid var(--line);border-radius:12px;padding:12px 10px;box-shadow:var(--shadow)}
+  .var .pair{display:flex;gap:4px}
+  .var .pair img{width:30px;height:30px;border-radius:5px;border:1px solid var(--line-soft)}
+  .var .eq{color:var(--acc);font-size:16px}
+  .var .res{display:flex;flex-direction:column;align-items:center;gap:4px}
+  .var .res img{width:38px;height:38px;border-radius:6px;border:1.5px solid var(--acc)}
+  .var .res small{font-size:10.5px;color:var(--ink-soft);font-weight:600}
+  .fine{font-size:13px;color:var(--muted);margin:6px 0 0}
+  .fine b{color:var(--ink-soft)}
+  img[data-tex="water"]{filter:brightness(.6) sepia(1) hue-rotate(178deg) saturate(4.5)}
+
   /* ---- 3D scene ---- */
   .scene{margin:22px 0 6px;background:
       radial-gradient(120% 90% at 50% 0%, color-mix(in srgb,var(--acc) 8%, var(--panel)), var(--panel));
@@ -295,6 +309,38 @@
       <p>La <b>porcelana</b> aguanta lava y agua de bruja (los buckets normales no), y el
       <b>crisol de porcelana funde el doble de rápido</b> que el de roble. Es la llave del
       siguiente paso: la energía infinita. Fabrica un crisol de porcelana apenas tengas clay.</p></div>
+
+    <div class="divider"></div>
+
+    <p class="lead" style="margin-top:26px"><b>El truco del martillo comprimido</b> — así trabajan
+      los que ya se pasaron el pack: en este modpack casi todo se puede <b>compactar</b> (9 cobble =
+      cobble comprimido). Y Ex Deorum tiene la contraparte:</p>
+
+    <div class="recipes">
+      <div class="rec">
+        <h4>Martillo Comprimido</h4><p class="out">exdeorum:compressed_stone_hammer · 9 martillos en uno</p>
+        <div class="craft">
+          <div class="grid3" data-recipe="chammer"></div>
+          <span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="i_stone_hammer" alt=""></div><small>Martillo<br>Comprimido</small></div>
+        </div>
+      </div>
+    </div>
+
+    <ul class="clean">
+      <li><span class="b">1</span><span>Compacta tu cobble: <b>9 cobble → Cobble Comprimido</b> (receta 3×3,
+        o automático con la <b>Compacting Upgrade</b> de Sophisticated que viste arriba).</span></li>
+      <li><span class="b">2</span><span>Golpéalo con el <b>Martillo Comprimido</b>: <b>1 bloque comprimido →
+        9 grava de un solo golpe</b>. Un click = nueve.</span></li>
+      <li><span class="b">3</span><span>Y existe el <b>Tamiz Comprimido</b>, que cierne bloques comprimidos
+        enteros. Mismo principio: nueve por el precio de un click.</span></li>
+    </ul>
+
+    <div class="trick"><span class="k">TRUCO</span>
+      <p><b>Compactar te sale a cuenta siempre:</b> ocupa 9× menos espacio, se martilla y se cierne en
+      lotes de 9, y cuando necesites el material suelto lo descompactas en la mesa. Trabaja comprimido,
+      descomprime al final. Más adelante el <b>Flux Compactor</b> (Ex Machinis) lo compacta todo con RF,
+      solo, sin que toques nada.</p></div>
   </section>
 
   <!-- PASO 3 -->
@@ -302,17 +348,31 @@
     <div class="step-h"><div class="step-n">3</div><div>
       <span class="tag">El combo estrella · 3 mods trabajando juntos</span>
       <h2>El motor infinito de poder</h2></div></div>
-    <p class="lead">Este es el momento en que dejas de depender del carbón para siempre. Tres
-      bloques de tres mods distintos forman un bucle que se alimenta solo:</p>
+    <p class="lead">Este es el momento en que dejas de depender del carbón para siempre. Pero
+      <b>cuidado con la mecánica</b>, que es justo donde la gente se equivoca: el Generador de Bloques
+      <b>no produce nada solo</b> — necesita sus bloques adyacentes.</p>
 
-    <ul class="clean">
-      <li><span class="b">1</span><span><b>Generador de Bloques</b> (Cobble Gen Galore) produce
-        <b>cobble solo</b>, pasivamente, de la nada.</span></li>
-      <li><span class="b">2</span><span>El cobble cae en el <b>Crisol de porcelana</b> (Ex Deorum),
-        que — con calor debajo — lo <b>funde en lava</b>: <b>250 mb por cobble</b>.</span></li>
-      <li><span class="b">3</span><span>Esa lava va al <b>Magmatic Generator</b> (Generator Galore),
-        que la <b>quema y genera RF</b>. Energía infinita, sin tocar nada.</span></li>
-    </ul>
+    <div class="note"><b>Cómo funciona de verdad el Generador de Bloques</b> (Cobble Gen Galore):
+      es como un cobble gen vanilla metido en un bloque. Le pones un bloque <b>a cada lado</b> y él
+      genera en medio, sin desgastarse. Lo que produce <b>depende de qué bloques le pongas</b>:</p>
+
+    <div class="vars">
+      <div class="var"><div class="pair"><img data-tex="water" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="cobblestone" alt=""><small>Cobblestone</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="packed_ice" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="deepslate" alt=""><small>Deepslate</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="lava" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="netherrack" alt=""><small>Netherrack*</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="water" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="obsidian" alt=""><small>Obsidiana*</small></div></div>
+    </div>
+    <p class="fine">* Algunos (piedra, obsidiana, netherrack, andesita…) piden además un <b>bloque
+      "modifier"</b> adyacente — el mismo bloque que quieres generar — y consumen uno de los dos lados.
+      Para el arranque nos basta el <b>cobblestone: agua + lava</b>, sin modifier y sin consumir nada.</p>
+
+    <p><b>El Generador "Stone"</b> (el que crafteas con piedra suave + vidrio) es el <b>tier básico</b>:
+      define la velocidad. Los tiers <b>cobre → hierro → oro → diamante → netherite</b> son el mismo
+      bloque, solo más rápidos. Así se pone el de cobble:</p>
 
     <div class="scene">
       <div class="stage" id="scene1"></div>
@@ -325,35 +385,27 @@
         <button data-act="reset">Reset</button>
       </div>
     </div>
-    <p class="cap">Gíralo y pasa el cursor por cada bloque. En línea: <b>Generador de Bloques →
-      Crisol</b> (con lava fundida, y la fuente de calor debajo) <b>→ Magmatic Generator</b>.</p>
+    <p class="cap"><b>Agua</b> a un lado, <b>Generador</b> en medio, <b>Lava</b> al otro — y el
+      almacenamiento va <b>ENCIMA</b>: fíjate que la textura de arriba del generador tiene un
+      <b>hueco</b> — ese es su output. Gíralo y pasa el cursor.</p>
 
-    <div class="note"><b>El arranque del huevo y la gallina:</b> el crisol necesita <b>calor debajo</b>
-      para fundir (antorcha = lento, lava = ×3, fuego = ×5). Como al principio no tienes lava, arranca
-      con <b>antorchas o una fogata de netherrack</b> debajo; en cuanto el crisol saque su primera lava,
-      deja un poco por debajo como fuente de calor y ya se sostiene solo.</p>
+    <div class="note"><b>¿Y las variantes con "modifier"?</b> El bloque modificador (piedra, andesita,
+      obsidiana…) va <b>DEBAJO</b> del generador. Lo confirma el propio libro de misiones (la quest de
+      Darkstone): <i>"Place Witch Water and Lava next to the Block Generator, with an Arcane Crystal
+      Block underneath"</i>. Lados = fluidos · abajo = modifier · arriba = salida.</div>
 
     <div class="trick"><span class="k">TRUCO</span>
-      <p>El <b>Generador de Bloques</b> no solo hace piedra: hay versiones de <b>hierro, cobre, oro…</b>
-      que producen esos bloques pasivamente. Es un <b>segundo motor de recursos</b> además del tamiz.
-      Y ojo: los generadores <b>8× y 64×</b> de Generator Galore producen más pero también
-      <b>consumen más lava</b> — escala el crisol antes de subirlos de tier.</p></div>
-  </section>
+      <p>Arriba le puedes poner <b>lo que quieras que tenga inventario</b>: un <b>cajón (drawer) 1×1
+      de roble</b>, un <b>cajón compactador</b> de Functional Storage (guarda nugget/lingote/bloque en
+      una ranura), un <b>barril o cofre de Sophisticated Storage</b>… Y a los de Sophisticated les cabe
+      la <b>Compacting Upgrade</b> (2×2) o la <b>Advanced Compacting Upgrade</b> (3×3), que <b>compactan
+      solos</b> lo que entra. Cobble → cobble comprimido, automático y sin gastar un tick tuyo.</p></div>
 
-  <!-- PASO 4 -->
-  <section class="step reveal">
-    <div class="step-h"><div class="step-n">4</div><div>
-      <span class="tag">Cierra el bucle · hazlo 100% pasivo</span>
-      <h2>Que las máquinas trabajen por ti</h2></div></div>
-    <p class="lead">Ya tienes energía. Ahora usa esa RF para <b>dejar de clickear el tamiz a mano</b>.
-      <b>Ex Machinis Deorum</b> te da versiones mecánicas que corren con RF:</p>
+    <div class="divider"></div>
 
-    <ul class="clean">
-      <li><span class="b">→</span><span>El <b>Martillo Mecánico</b> tritura el cobble solo (cobble→grava→arena).</span></li>
-      <li><span class="b">→</span><span>El <b>Tamiz Mecánico</b> cierne lo que le llega, con su malla puesta.</span></li>
-      <li><span class="b">→</span><span>La salida cae a un <b>barril de Sophisticated Storage</b> con
-        mejoras de <b>imán</b> y <b>apilado</b>: se llena solo desde lejos.</span></li>
-    </ul>
+    <p class="lead" style="margin-top:26px">Ya tienes cobble infinito. Ahora conviértelo en
+      <b>energía</b>: el cobble alimenta el <b>Crisol</b>, que lo funde en <b>lava</b>, que quema el
+      <b>Magmatic Generator</b>.</p>
 
     <div class="scene">
       <div class="stage" id="scene2"></div>
@@ -366,8 +418,65 @@
         <button data-act="reset">Reset</button>
       </div>
     </div>
-    <p class="cap">Gíralo y pasa el cursor. <b>Martillo</b> y <b>Tamiz Mecánicos</b> alimentados por el
-      <b>Magmatic Generator</b>; la salida cae al <b>Barril</b> detrás del tamiz.</p>
+    <p class="cap"><b>Crisol de porcelana</b> (lava fundida dentro, <b>calor debajo</b>) →
+      <b>Tubería de Fluidos de Pipez</b> → <b>Magmatic Generator</b>. Ponerlos pegados NO basta:
+      el generador tiene tanque interno y la lava hay que <b>tubearla</b>.</p>
+
+    <div class="note"><b>Las conexiones — esto es lo que casi nadie te dice:</b> el cobble entra al
+      crisol <b>por arriba</b> (un <b>hopper</b> desde el cajón del generador basta). El crisol guarda
+      la lava como <b>fluido</b>, y el Magmatic Generator <b>no la jala solo</b>: necesitas una
+      <b>Tubería de Fluidos de Pipez</b> — la más barata del pack: <b>3 hierro + 2 cubetas +
+      1 redstone = 16 tuberías</b>. Conéctala del crisol al generador y pon la conexión del lado del
+      crisol en modo <b>Extract</b>. Esa es tu primera logística de fluidos, y Pipez va a ser tu navaja
+      suiza: tiene tubería de <b>items</b>, <b>fluidos</b> y <b>energía</b>, todas igual de baratas.</div>
+
+    <div class="note"><b>El arranque del huevo y la gallina:</b> el crisol necesita <b>calor debajo</b>
+      para fundir (antorcha ×1, lava ×3, fuego ×5). Como al principio no tienes lava, arranca con
+      <b>antorchas o fuego de netherrack</b> debajo; deja un poco de la lava que produzca como fuente
+      de calor y ya se sostiene solo.</p>
+
+    <div class="trick"><span class="k">TRUCO</span>
+      <p>El <b>Crisol de porcelana</b> funde el doble de rápido que el de roble. Y ojo con escalar: los
+      generadores <b>8× y 64×</b> de Generator Galore producen mucho más pero <b>consumen más</b> — pon
+      más crisoles antes de subir de tier, o el cuello de botella será fundir, no generar.</p></div>
+  </section>
+
+  <!-- PASO 4 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">4</div><div>
+      <span class="tag">Cierra el bucle · hazlo 100% pasivo</span>
+      <h2>Que las máquinas trabajen por ti</h2></div></div>
+    <p class="lead">Ya tienes energía. Ahora usa esa RF para <b>dejar de clickear el tamiz a mano</b>.
+      El propio <b>Ex Deorum</b> trae las máquinas (y <b>Ex Machinis</b> añade las versiones "Flux",
+      aún más rápidas, para después):</p>
+
+    <ul class="clean">
+      <li><span class="b">→</span><span>El <b>Mechanical Hammer</b> (Ex Deorum) tritura con FE. Truco del
+        propio mod: <b>ponle un martillo en su slot y va al doble</b>; con encantamiento de eficiencia,
+        más rápido todavía.</span></li>
+      <li><span class="b">→</span><span>El <b>Mechanical Sieve</b> (Ex Deorum) cierne con FE — necesita su
+        <b>malla</b> en el slot, igual que el manual.</span></li>
+      <li><span class="b">→</span><span>Entre máquinas, <b>Tuberías de Items de Pipez</b> (modo Extract en
+        la salida de cada una). La energía del generador llega a los bloques <b>adyacentes</b>; si están
+        lejos, <b>Tubería de Energía de Pipez</b>.</span></li>
+      <li><span class="b">→</span><span>Al final, un <b>barril de Sophisticated Storage</b> — ya sabes:
+        con <b>Compacting Upgrade</b> se compacta solo.</span></li>
+    </ul>
+
+    <div class="scene">
+      <div class="stage" id="scene3"></div>
+      <div class="ctrls" data-for="scene3">
+        <button data-act="left">⟲ Izq</button>
+        <button data-act="right">Der ⟳</button>
+        <button data-act="top">Vista superior</button>
+        <button data-act="zin">Zoom +</button>
+        <button data-act="zout">Zoom −</button>
+        <button data-act="reset">Reset</button>
+      </div>
+    </div>
+    <p class="cap">La línea del frente: <b>Mechanical Hammer → tubería de items → Mechanical Sieve →
+      tubería de items → Barril</b>. Detrás: el <b>Magmatic Generator</b> con <b>tuberías de energía</b>
+      repartiendo el FE a las dos máquinas. Nada está "pegado por magia": cada conexión es una tubería.</p>
 
     <div class="trick"><span class="k">EL CIERRE</span>
       <p>Fíjate en el bucle completo: la <b>RF</b> mueve las máquinas, que procesan los <b>bloques</b>,
@@ -387,8 +496,10 @@
       <li><b>Primera malla</b> de string (silkworms → hilo) montada en el tamiz.</li>
       <li><b>Cadena de trituración</b> corriendo: cobble → grava → arena → polvo.</li>
       <li><b>Clay y porcelana:</b> polvo+agua → clay → crisol de porcelana.</li>
-      <li><b>Motor infinito:</b> Generador de Bloques → Crisol → Magmatic Generator = RF ∞.</li>
-      <li><b>Automatizado:</b> martillo + tamiz mecánicos + barril de salida.</li>
+      <li><b>Generador de cobble:</b> agua a un lado + lava al otro, y el cajón/barril <b>ENCIMA</b> (ahí está su output).</li>
+      <li><b>Martillo comprimido:</b> 9 martillos → 1 comprimido; trabaja con bloques compactados (9 por golpe).</li>
+      <li><b>Motor infinito:</b> hopper de cobble al Crisol (calor debajo) → <b>tubería de fluidos Pipez</b> → Magmatic Generator = RF ∞.</li>
+      <li><b>Automatizado:</b> Mechanical Hammer (con martillo dentro) + Mechanical Sieve (con malla), unidos con <b>tuberías de items Pipez</b> y energía del generador.</li>
       <li><b>Sube las mallas</b> de tier cuando puedas (flint → hierro → …).</li>
     </ol>
   </div>

@@ -52,7 +52,7 @@ function expand(boxes){
       cy: b.y + (f[1]+t[1])/32 - 0.5,
       cz: b.z + (f[2]+t[2])/32 - 0.5,
       hx: (t[0]-f[0])/32, hy: (t[1]-f[1])/32, hz: (t[2]-f[2])/32,
-      tex: b.tex, glow: b.glow, group: (b.group!=null?b.group:i), o:i
+      tex: b.tex, glow: b.glow, tint: b.tint, group: (b.group!=null?b.group:i), o:i
     };
   });
 }
@@ -123,18 +123,23 @@ function buildScene(id, boxes, opt){
         if(pickMode){ flat(c2, p[0],p[1],p[2], idc); continue; }
         const img = IMG[texKey(b,f.k)];
         if(!img || !img.complete || !img.naturalWidth) continue;
-        quad(c2, img, p[0],p[1],p[2], b.glow?0:f.dark);
+        quad(c2, img, p[0],p[1],p[2], b.glow?0:f.dark, b.tint);
       }
     }
     c2.setTransform(1,0,0,1,0,0);
   }
-  function quad(c2, img, P0,P1,P3, dark){
+  function quad(c2, img, P0,P1,P3, dark, tint){
     const iw=img.naturalWidth, ih=img.naturalHeight;
     if(!iw||!ih) return;
     const sh = ih>iw ? iw : ih;                 // texturas animadas: solo el 1er cuadro
     c2.setTransform((P1.x-P0.x)/iw,(P1.y-P0.y)/iw,(P3.x-P0.x)/sh,(P3.y-P0.y)/sh,P0.x,P0.y);
     c2.globalAlpha = 1;
     c2.drawImage(img, 0,0,iw,sh, -0.5,-0.5, iw+1, sh+1);
+    if(tint){ // teñir texturas en escala de grises (agua) con multiply
+      c2.globalCompositeOperation = "multiply";
+      c2.fillStyle = tint; c2.fillRect(-0.5,-0.5,iw+1,sh+1);
+      c2.globalCompositeOperation = "source-over";
+    }
     if(dark>0){ c2.globalAlpha = dark; c2.fillStyle = "#000"; c2.fillRect(-0.5,-0.5,iw+1,sh+1); c2.globalAlpha=1; }
   }
   function flat(c2, P0,P1,P3, color){
