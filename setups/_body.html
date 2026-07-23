@@ -1,0 +1,408 @@
+<meta charset="utf-8">
+<title>Acto I · El Arranque en el Vacío — Guía ATM10 Sky</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#e9edf4; --bg2:#dfe5f0; --panel:#ffffff; --panel-2:#f4f7fc;
+    --ink:#161d2e; --ink-soft:#3a4256; --muted:#5c6678;
+    --line:#c8d2e2; --line-soft:#dae1ee;
+    --shadow:0 1px 2px rgba(20,30,60,.06),0 10px 30px rgba(20,30,60,.09);
+    --acc:#c0631f; --acc2:#d98a2b; --acc-t:rgba(192,99,31,.12); --acc-ink:#8a4713;
+    --lava:#e2571b; --ok:#2f9e57;
+    --font-d:"Bahnschrift","Segoe UI Semibold","Arial Narrow",system-ui,sans-serif;
+    --font-b:"Segoe UI",system-ui,-apple-system,sans-serif;
+    --font-m:"Cascadia Mono","Cascadia Code",ui-monospace,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0a0c13; --bg2:#0e1119; --panel:#151a26; --panel-2:#1a2030;
+      --ink:#eef1f8; --ink-soft:#c6cddd; --muted:#8891a6;
+      --line:#28303f; --line-soft:#1d2431;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 34px rgba(0,0,0,.5);
+      --acc:#e8944a; --acc2:#f0b062; --acc-t:rgba(232,148,74,.15); --acc-ink:#f2b784;
+      --lava:#ff6a2c;
+    }
+  }
+  :root[data-theme="light"]{ --bg:#e9edf4;--bg2:#dfe5f0;--panel:#ffffff;--panel-2:#f4f7fc;--ink:#161d2e;--ink-soft:#3a4256;--muted:#5c6678;--line:#c8d2e2;--line-soft:#dae1ee;--shadow:0 1px 2px rgba(20,30,60,.06),0 10px 30px rgba(20,30,60,.09);--acc:#c0631f;--acc2:#d98a2b;--acc-t:rgba(192,99,31,.12);--acc-ink:#8a4713;--lava:#e2571b; }
+  :root[data-theme="dark"]{ --bg:#0a0c13;--bg2:#0e1119;--panel:#151a26;--panel-2:#1a2030;--ink:#eef1f8;--ink-soft:#c6cddd;--muted:#8891a6;--line:#28303f;--line-soft:#1d2431;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 34px rgba(0,0,0,.5);--acc:#e8944a;--acc2:#f0b062;--acc-t:rgba(232,148,74,.15);--acc-ink:#f2b784;--lava:#ff6a2c; }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:
+    radial-gradient(1200px 500px at 50% -140px, var(--acc-t), transparent 70%),
+    var(--bg);color:var(--ink);font-family:var(--font-b);line-height:1.62;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  img{image-rendering:pixelated}
+
+  /* ---- top bar ---- */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:12px;
+    max-width:920px;margin:0 auto;padding:18px 20px 0}
+  .back{font-family:var(--font-m);font-size:12.5px;color:var(--muted);text-decoration:none;
+    display:inline-flex;gap:7px;align-items:center;padding:7px 12px;border:1px solid var(--line);
+    border-radius:100px;transition:.15s}
+  .back:hover{color:var(--acc);border-color:var(--acc)}
+  .badge{font-family:var(--font-m);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--acc);border:1px solid var(--acc);border-radius:6px;padding:4px 10px;background:var(--acc-t)}
+
+  /* ---- hero ---- */
+  header.hero{text-align:center;padding:40px 20px 8px}
+  .kicker{font-family:var(--font-m);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+  h1{font-family:var(--font-d);font-weight:600;font-size:clamp(32px,6.6vw,58px);line-height:1.03;margin:0;text-wrap:balance}
+  h1 .g{color:var(--acc)}
+  .sub{max-width:60ch;margin:18px auto 0;font-size:clamp(15px,2.1vw,18px);color:var(--ink-soft)}
+  .sub b{color:var(--ink)}
+
+  /* ---- howto strip ---- */
+  .howto{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px auto 0;max-width:760px}
+  .howto span{font-family:var(--font-m);font-size:11.5px;color:var(--muted);background:var(--panel);
+    border:1px solid var(--line-soft);border-radius:100px;padding:6px 13px;display:inline-flex;gap:7px;align-items:center}
+
+  /* ---- section ---- */
+  section.step{margin:52px 0 0}
+  .step-h{display:flex;gap:15px;align-items:flex-start;margin-bottom:6px}
+  .step-n{font-family:var(--font-d);font-weight:600;font-size:15px;color:#fff;background:var(--acc);
+    width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:none;margin-top:3px;
+    box-shadow:0 4px 12px var(--acc-t)}
+  .step-h h2{font-family:var(--font-d);font-weight:600;font-size:clamp(23px,3.8vw,32px);margin:0;line-height:1.1;letter-spacing:.01em}
+  .step-h .tag{font-family:var(--font-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);display:block;margin-bottom:2px}
+  p{font-size:15.5px;color:var(--ink-soft);margin:14px 0}
+  p b{color:var(--ink);font-weight:600}
+  .lead{font-size:16.5px}
+  strong.hl{color:var(--acc-ink);font-weight:700}
+
+  /* ---- quest chip ---- */
+  .quest{display:flex;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);
+    border-left:3px solid var(--acc);border-radius:12px;padding:13px 16px;margin:16px 0}
+  .quest .ic{font-size:19px;flex:none}
+  .quest b{color:var(--ink)}
+  .quest span{font-size:14px;color:var(--ink-soft)}
+
+  /* ---- recipe grid ---- */
+  .recipes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:22px 0}
+  .rec{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+  .rec h4{font-family:var(--font-d);font-weight:600;font-size:16px;margin:0 0 3px}
+  .rec .out{font-family:var(--font-m);font-size:11.5px;color:var(--muted);margin:0 0 12px}
+  .craft{display:flex;gap:14px;align-items:center}
+  .grid3{display:grid;grid-template-columns:repeat(3,34px);grid-template-rows:repeat(3,34px);gap:3px;
+    background:var(--panel-2);padding:6px;border-radius:8px;border:1px solid var(--line-soft);flex:none}
+  .cell{background:var(--bg2);border-radius:4px;border:1px solid var(--line-soft);position:relative}
+  .cell img{width:100%;height:100%;display:block;border-radius:3px}
+  .arrow{color:var(--acc);font-size:20px}
+  .result{display:flex;flex-direction:column;align-items:center;gap:5px}
+  .result .slot{width:46px;height:46px;background:var(--acc-t);border:1.5px solid var(--acc);border-radius:8px;
+    display:grid;place-items:center;overflow:hidden}
+  .result .slot img{width:38px;height:38px}
+  .result small{font-family:var(--font-m);font-size:10px;color:var(--muted);text-align:center;line-height:1.3}
+
+  /* ---- chain row ---- */
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:center;
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 16px;margin:20px 0;box-shadow:var(--shadow)}
+  .node{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:70px}
+  .node .tex{width:52px;height:52px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--panel-2)}
+  .node .tex img{width:100%;height:100%}
+  .node small{font-size:11px;color:var(--ink-soft);text-align:center;font-weight:600}
+  .chain .arrow{font-size:22px;color:var(--acc);opacity:.7}
+  .chain .op{font-family:var(--font-m);font-size:10.5px;color:var(--muted);text-align:center}
+
+  /* ---- 3D scene ---- */
+  .scene{margin:22px 0 6px;background:
+      radial-gradient(120% 90% at 50% 0%, color-mix(in srgb,var(--acc) 8%, var(--panel)), var(--panel));
+    border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+  .stage{position:relative;width:100%;height:min(64vw,440px);touch-action:none;cursor:grab}
+  .stage.drag{cursor:grabbing}
+  .stage canvas{position:absolute;inset:0}
+  .tip{position:absolute;pointer-events:none;z-index:5;background:rgba(12,15,24,.94);color:#fff;
+    border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:7px 10px;font-size:12.5px;
+    max-width:210px;opacity:0;transform:translateY(-3px);transition:opacity .12s;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+  .tip.on{opacity:1}
+  .tip b{display:block;font-family:var(--font-d);font-size:13.5px;color:var(--acc2)}
+  .tip i{display:block;font-style:normal;color:#aab3c9;font-size:11.5px;margin-top:2px}
+  .ctrls{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:11px;border-top:1px solid var(--line-soft);
+    background:var(--panel-2)}
+  .ctrls button{font-family:var(--font-m);font-size:12px;color:var(--ink-soft);background:var(--panel);
+    border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;transition:.13s}
+  .ctrls button:hover{border-color:var(--acc);color:var(--acc)}
+  .cap{font-family:var(--font-m);font-size:11.5px;color:var(--muted);text-align:center;margin:8px 0 0}
+  .cap b{color:var(--acc)}
+
+  /* ---- trick / note callouts ---- */
+  .trick{display:flex;gap:13px;background:linear-gradient(180deg,var(--acc-t),transparent);
+    border:1px solid var(--acc);border-radius:13px;padding:15px 17px;margin:20px 0}
+  .trick .k{font-family:var(--font-d);font-weight:700;color:var(--acc);font-size:13px;letter-spacing:.08em;flex:none;
+    writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);padding:2px 0}
+  .trick p{margin:0;font-size:14.5px;color:var(--ink)}
+  .trick p b{color:var(--acc-ink)}
+  .note{background:var(--panel-2);border:1px dashed var(--line);border-radius:11px;padding:13px 16px;margin:16px 0;font-size:14px;color:var(--ink-soft)}
+  .note b{color:var(--ink)}
+
+  ul.clean{list-style:none;padding:0;margin:16px 0;display:flex;flex-direction:column;gap:11px}
+  ul.clean li{display:flex;gap:11px;font-size:15px;color:var(--ink-soft)}
+  ul.clean li .b{color:var(--acc);font-weight:700;flex:none;font-family:var(--font-m);font-size:13px;margin-top:1px}
+  ul.clean li b{color:var(--ink)}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:8px 0}
+
+  /* ---- checklist ---- */
+  .check{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:40px 0 0;box-shadow:var(--shadow)}
+  .check h3{font-family:var(--font-d);font-weight:600;font-size:20px;margin:0 0 14px}
+  .check ol{margin:0;padding-left:0;list-style:none;counter-reset:c;display:flex;flex-direction:column;gap:10px}
+  .check li{counter-increment:c;display:flex;gap:12px;font-size:14.5px;color:var(--ink-soft)}
+  .check li::before{content:counter(c);font-family:var(--font-m);font-size:12px;color:var(--acc);
+    border:1px solid var(--acc);border-radius:6px;width:24px;height:24px;display:grid;place-items:center;flex:none;background:var(--acc-t)}
+  .check li b{color:var(--ink)}
+
+  /* ---- footer ---- */
+  footer{margin:52px 0 70px;text-align:center}
+  .nextcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow);max-width:560px;margin:0 auto}
+  .nextcard .lbl{font-family:var(--font-m);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .nextcard h3{font-family:var(--font-d);font-weight:600;font-size:22px;margin:6px 0 8px}
+  .nextcard p{margin:0;font-size:14px}
+  .foot-links{margin-top:26px;font-family:var(--font-m);font-size:12px;color:var(--muted)}
+  .foot-links a{color:var(--acc);text-decoration:none}
+
+  :focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .reveal{opacity:0;transform:translateY(16px)}
+  .reveal.in{opacity:1;transform:none;transition:opacity .55s ease,transform .55s ease}
+</style>
+
+<div class="top">
+  <a class="back" href="../index.html">← Mapa de progresión</a>
+  <span class="badge">Acto I · El Arranque</span>
+</div>
+
+<header class="hero">
+  <p class="kicker">All the Mods 10 · To the Sky</p>
+  <h1>El Arranque en <span class="g">el Vacío</span></h1>
+  <p class="sub">Apareces en una plataforma diminuta flotando en la nada. No tienes
+    <b>nada</b>. Al terminar esta guía vas a tener un <b>motor de recursos infinito</b> y
+    <b>energía gratis para siempre</b> — con bloques básicos de tres mods que trabajan juntos.
+    Este es el camino que seguiría alguien que ya se pasó el pack mil veces.</p>
+  <div class="howto">
+    <span>🖱️ Arrastra para girar la escena</span>
+    <span>🔍 Zoom con los botones</span>
+    <span>👆 Pasa el cursor por un bloque y te dice cuál es</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- PASO 1 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">1</div><div>
+      <span class="tag">Ex Deorum · el motor de recursos</span>
+      <h2>Todo sale del tamiz</h2></div></div>
+    <p class="lead">En un skyblock no hay minas. En este pack, <b>Ex Deorum</b> es tu mina: un
+      <b>martillo</b> tritura, un <b>tamiz</b> cierne y un <b>rastrillo</b> (crook) cosecha las hojas.
+      De ese trío sale literalmente <strong class="hl">todo</strong> tu material temprano.</p>
+
+    <div class="quest"><span class="ic">📖</span><div>
+      <b>Reclama</b> las primeras misiones de <i>Starting Out</i>: te dan planks, palos y los
+      objetos base. <span>El libro te da las piezas — esta guía te dice cómo encadenarlas.</span></div></div>
+
+    <p>Con la madera de tu primer árbol, craftea el kit de arranque:</p>
+
+    <div class="recipes">
+      <div class="rec">
+        <h4>Barril</h4><p class="out">exdeorum:oak_barrel · aquí mezclas fluidos y compostas</p>
+        <div class="craft">
+          <div class="grid3" data-recipe="barrel"></div>
+          <span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="oak_planks" alt=""></div><small>Barril</small></div>
+        </div>
+      </div>
+      <div class="rec">
+        <h4>Tamiz</h4><p class="out">exdeorum:oak_sieve · el corazón del motor</p>
+        <div class="craft">
+          <div class="grid3" data-recipe="sieve"></div>
+          <span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="oak_planks" alt=""></div><small>Tamiz</small></div>
+        </div>
+      </div>
+      <div class="rec">
+        <h4>Rastrillo</h4><p class="out">exdeorum:crook · cosecha hojas y saca silkworms</p>
+        <div class="craft">
+          <div class="grid3" data-recipe="crook"></div>
+          <span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="i_crook" alt=""></div><small>Rastrillo</small></div>
+        </div>
+      </div>
+      <div class="rec">
+        <h4>Martillo de piedra</h4><p class="out">exdeorum:stone_hammer · tritura bloques</p>
+        <div class="craft">
+          <div class="grid3" data-recipe="hammer"></div>
+          <span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="i_stone_hammer" alt=""></div><small>Martillo</small></div>
+        </div>
+      </div>
+    </div>
+
+    <p><b>El truco del hilo:</b> pega con el rastrillo a las hojas de tu árbol → sueltan
+      <b>saplings</b>, <b>palos</b> y <b>silkworms</b>. Pon los silkworms encima de más hojas: se
+      las comen y sueltan <b>string</b> sin parar. Con 9 de string tejes tu <b>primera malla</b>,
+      que va dentro del tamiz.</p>
+
+    <div class="chain">
+      <div class="node"><div class="tex"><img data-tex="string" alt=""></div><small>String<br>(de silkworms)</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="string" alt=""></div><small>Malla de<br>string</small></div>
+      <span class="op">se monta en</span>
+      <div class="node"><div class="tex"><img data-tex="oak_planks" alt=""></div><small>Tamiz</small></div>
+    </div>
+
+    <div class="trick"><span class="k">TRUCO</span>
+      <p>Las mallas suben de tier: <b>string → flint → hierro → oro → diamante → netherite</b>.
+      Cada malla mejor <b>desbloquea más y mejores drops</b> del mismo bloque cernido. Súbelas
+      apenas puedas: es gratis multiplicar lo que sacas sin cambiar nada más del setup.</p></div>
+  </section>
+
+  <!-- PASO 2 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">2</div><div>
+      <span class="tag">La progresión que el libro NO te conecta</span>
+      <h2>Piedra → polvo → clay → porcelana</h2></div></div>
+    <p class="lead">Aquí está la cadena invisible que casi nadie te explica y que abre medio
+      early game. El <b>martillo</b> baja cualquier bloque un escalón cada golpe:</p>
+
+    <div class="chain">
+      <div class="node"><div class="tex"><img data-tex="cobblestone" alt=""></div><small>Cobble</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="gravel" alt=""></div><small>Grava</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="sand" alt=""></div><small>Arena</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="dust" alt=""></div><small>Polvo</small></div>
+      <span class="op">martillo cada paso</span>
+    </div>
+
+    <p>La <b>grava</b> cernida te da tus primeros <b>metales</b> (hierro, cobre, osmio…) y flint.
+      Pero el <b>polvo</b> esconde el secreto: mételo en un <b>barril con agua</b> y se convierte
+      en <strong class="hl">clay</strong>. Y la clay abre toda la <b>porcelana</b>.</p>
+
+    <div class="chain">
+      <div class="node"><div class="tex"><img data-tex="dust" alt=""></div><small>Polvo</small></div>
+      <span class="op">+ 1000mb<br>agua (barril)</span>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="clay" alt=""></div><small>Clay</small></div>
+      <span class="op">cocer</span>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="i_clay_ball" alt=""></div><small>Porcelana</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><div class="tex"><img data-tex="porcelain_crucible" alt=""></div><small>Crisol de<br>porcelana</small></div>
+    </div>
+
+    <div class="trick"><span class="k">POR QUÉ</span>
+      <p>La <b>porcelana</b> aguanta lava y agua de bruja (los buckets normales no), y el
+      <b>crisol de porcelana funde el doble de rápido</b> que el de roble. Es la llave del
+      siguiente paso: la energía infinita. Fabrica un crisol de porcelana apenas tengas clay.</p></div>
+  </section>
+
+  <!-- PASO 3 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">3</div><div>
+      <span class="tag">El combo estrella · 3 mods trabajando juntos</span>
+      <h2>El motor infinito de poder</h2></div></div>
+    <p class="lead">Este es el momento en que dejas de depender del carbón para siempre. Tres
+      bloques de tres mods distintos forman un bucle que se alimenta solo:</p>
+
+    <ul class="clean">
+      <li><span class="b">1</span><span><b>Generador de Bloques</b> (Cobble Gen Galore) produce
+        <b>cobble solo</b>, pasivamente, de la nada.</span></li>
+      <li><span class="b">2</span><span>El cobble cae en el <b>Crisol de porcelana</b> (Ex Deorum),
+        que — con calor debajo — lo <b>funde en lava</b>: <b>250 mb por cobble</b>.</span></li>
+      <li><span class="b">3</span><span>Esa lava va al <b>Magmatic Generator</b> (Generator Galore),
+        que la <b>quema y genera RF</b>. Energía infinita, sin tocar nada.</span></li>
+    </ul>
+
+    <div class="scene">
+      <div class="stage" id="scene1"></div>
+      <div class="ctrls" data-for="scene1">
+        <button data-act="left">⟲ Izq</button>
+        <button data-act="right">Der ⟳</button>
+        <button data-act="top">Vista superior</button>
+        <button data-act="zin">Zoom +</button>
+        <button data-act="zout">Zoom −</button>
+        <button data-act="reset">Reset</button>
+      </div>
+    </div>
+    <p class="cap">Gíralo y pasa el cursor por cada bloque. En línea: <b>Generador de Bloques →
+      Crisol</b> (con lava fundida, y la fuente de calor debajo) <b>→ Magmatic Generator</b>.</p>
+
+    <div class="note"><b>El arranque del huevo y la gallina:</b> el crisol necesita <b>calor debajo</b>
+      para fundir (antorcha = lento, lava = ×3, fuego = ×5). Como al principio no tienes lava, arranca
+      con <b>antorchas o una fogata de netherrack</b> debajo; en cuanto el crisol saque su primera lava,
+      deja un poco por debajo como fuente de calor y ya se sostiene solo.</p>
+
+    <div class="trick"><span class="k">TRUCO</span>
+      <p>El <b>Generador de Bloques</b> no solo hace piedra: hay versiones de <b>hierro, cobre, oro…</b>
+      que producen esos bloques pasivamente. Es un <b>segundo motor de recursos</b> además del tamiz.
+      Y ojo: los generadores <b>8× y 64×</b> de Generator Galore producen más pero también
+      <b>consumen más lava</b> — escala el crisol antes de subirlos de tier.</p></div>
+  </section>
+
+  <!-- PASO 4 -->
+  <section class="step reveal">
+    <div class="step-h"><div class="step-n">4</div><div>
+      <span class="tag">Cierra el bucle · hazlo 100% pasivo</span>
+      <h2>Que las máquinas trabajen por ti</h2></div></div>
+    <p class="lead">Ya tienes energía. Ahora usa esa RF para <b>dejar de clickear el tamiz a mano</b>.
+      <b>Ex Machinis Deorum</b> te da versiones mecánicas que corren con RF:</p>
+
+    <ul class="clean">
+      <li><span class="b">→</span><span>El <b>Martillo Mecánico</b> tritura el cobble solo (cobble→grava→arena).</span></li>
+      <li><span class="b">→</span><span>El <b>Tamiz Mecánico</b> cierne lo que le llega, con su malla puesta.</span></li>
+      <li><span class="b">→</span><span>La salida cae a un <b>barril de Sophisticated Storage</b> con
+        mejoras de <b>imán</b> y <b>apilado</b>: se llena solo desde lejos.</span></li>
+    </ul>
+
+    <div class="scene">
+      <div class="stage" id="scene2"></div>
+      <div class="ctrls" data-for="scene2">
+        <button data-act="left">⟲ Izq</button>
+        <button data-act="right">Der ⟳</button>
+        <button data-act="top">Vista superior</button>
+        <button data-act="zin">Zoom +</button>
+        <button data-act="zout">Zoom −</button>
+        <button data-act="reset">Reset</button>
+      </div>
+    </div>
+    <p class="cap">Gíralo y pasa el cursor. <b>Martillo</b> y <b>Tamiz Mecánicos</b> alimentados por el
+      <b>Magmatic Generator</b>; la salida cae al <b>Barril</b> detrás del tamiz.</p>
+
+    <div class="trick"><span class="k">EL CIERRE</span>
+      <p>Fíjate en el bucle completo: la <b>RF</b> mueve las máquinas, que procesan los <b>bloques</b>,
+      que alimentan el crisol, que hace la <b>lava</b>, que genera la <b>RF</b>. Un sistema que se
+      alimenta a sí mismo y escupe metales mientras tú haces otra cosa. <b>Eso</b> es el early game óptimo.</p></div>
+
+    <div class="note">🔌 <b>El puente al futuro:</b> ese barril de salida es tu punto de conexión. En el
+      <b>Acto III</b> le pones un <b>bus de importación de AE2</b> y todos estos metales entran solos a tu
+      almacenamiento digital. No tires nada de esto: es la base de toda tu base.</div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <div class="check reveal">
+    <h3>✓ Checklist del arranque</h3>
+    <ol>
+      <li><b>Kit Ex Deorum:</b> barril, tamiz, rastrillo y martillo de piedra.</li>
+      <li><b>Primera malla</b> de string (silkworms → hilo) montada en el tamiz.</li>
+      <li><b>Cadena de trituración</b> corriendo: cobble → grava → arena → polvo.</li>
+      <li><b>Clay y porcelana:</b> polvo+agua → clay → crisol de porcelana.</li>
+      <li><b>Motor infinito:</b> Generador de Bloques → Crisol → Magmatic Generator = RF ∞.</li>
+      <li><b>Automatizado:</b> martillo + tamiz mecánicos + barril de salida.</li>
+      <li><b>Sube las mallas</b> de tier cuando puedas (flint → hierro → …).</li>
+    </ol>
+  </div>
+
+  <footer>
+    <div class="nextcard reveal">
+      <div class="lbl">Siguiente en el mapa</div>
+      <h3>Acto II · Automatización y magia útil</h3>
+      <p>Doblar minerales con Create antes de Mekanism, loot sin matar mobs con Ars Nouveau,
+        y almacenamiento pasivo con Occultism. Los secretos de experto.</p>
+    </div>
+    <p class="foot-links">
+      <a href="../index.html">← Volver al mapa de progresión</a> &nbsp;·&nbsp;
+      Guía Interactiva ATM10 Sky &nbsp;·&nbsp; hecha para replicarse en el juego 🌟
+    </p>
+  </footer>
+</div>
