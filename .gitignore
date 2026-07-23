@@ -1,0 +1,15 @@
+# Archivos temporales / de trabajo
+_check.js
+_harness.js
+*.tmp
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp

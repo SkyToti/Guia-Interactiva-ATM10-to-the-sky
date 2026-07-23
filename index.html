@@ -1,0 +1,481 @@
+<title>ATM10 Sky · Mapa de Progresión</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* ===== TOKENS ===== */
+  :root{
+    --bg:#e9edf4; --bg2:#dfe5f0; --panel:#ffffff; --panel-2:#f4f7fc;
+    --ink:#161d2e; --ink-soft:#3a4256; --muted:#5c6678;
+    --line:#c8d2e2; --line-soft:#dae1ee;
+    --shadow:0 1px 2px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.08);
+    --star:#e0a417;
+    /* material progression accents */
+    --a1:#c06a2c; --a2:#1592b3; --a3:#7d54c9; --a4:#12a389; --a5:#d13d8f; --a6:#c88a10;
+    --a1-t:rgba(192,106,44,.13); --a2-t:rgba(21,146,179,.13); --a3-t:rgba(125,84,201,.13);
+    --a4-t:rgba(18,163,137,.13); --a5-t:rgba(209,61,143,.13); --a6-t:rgba(200,138,16,.14);
+    --sky:#a9c4e6;
+    --font-d:"Bahnschrift","Segoe UI Semibold","Arial Narrow",system-ui,sans-serif;
+    --font-b:"Segoe UI",system-ui,-apple-system,sans-serif;
+    --font-m:"Cascadia Mono","Cascadia Code",ui-monospace,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#080b14; --bg2:#0c1020; --panel:#12172a; --panel-2:#161c33;
+      --ink:#e9edf8; --ink-soft:#c1c9de; --muted:#828cab;
+      --line:#242c47; --line-soft:#1b2138;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 34px rgba(0,0,0,.45);
+      --star:#ffcf4a; --sky:#141b33;
+      --a1:#e0894a; --a2:#33bfe0; --a3:#a683ea; --a4:#33dcbe; --a5:#ff6cb4; --a6:#ffc84a;
+      --a1-t:rgba(224,137,74,.16); --a2-t:rgba(51,191,224,.15); --a3-t:rgba(166,131,234,.16);
+      --a4-t:rgba(51,220,190,.14); --a5-t:rgba(255,108,180,.16); --a6-t:rgba(255,200,74,.16);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#e9edf4; --bg2:#dfe5f0; --panel:#ffffff; --panel-2:#f4f7fc;
+    --ink:#161d2e; --ink-soft:#3a4256; --muted:#5c6678;
+    --line:#c8d2e2; --line-soft:#dae1ee;
+    --shadow:0 1px 2px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.08);
+    --star:#e0a417; --sky:#a9c4e6;
+    --a1:#c06a2c; --a2:#1592b3; --a3:#7d54c9; --a4:#12a389; --a5:#d13d8f; --a6:#c88a10;
+    --a1-t:rgba(192,106,44,.13); --a2-t:rgba(21,146,179,.13); --a3-t:rgba(125,84,201,.13);
+    --a4-t:rgba(18,163,137,.13); --a5-t:rgba(209,61,143,.13); --a6-t:rgba(200,138,16,.14);
+  }
+  :root[data-theme="dark"]{
+    --bg:#080b14; --bg2:#0c1020; --panel:#12172a; --panel-2:#161c33;
+    --ink:#e9edf8; --ink-soft:#c1c9de; --muted:#828cab;
+    --line:#242c47; --line-soft:#1b2138;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 34px rgba(0,0,0,.45);
+    --star:#ffcf4a; --sky:#141b33;
+    --a1:#e0894a; --a2:#33bfe0; --a3:#a683ea; --a4:#33dcbe; --a5:#ff6cb4; --a6:#ffc84a;
+    --a1-t:rgba(224,137,74,.16); --a2-t:rgba(51,191,224,.15); --a3-t:rgba(166,131,234,.16);
+    --a4-t:rgba(51,220,190,.14); --a5-t:rgba(255,108,180,.16); --a6-t:rgba(255,200,74,.16);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);
+    line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  #stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* ===== HERO ===== */
+  header.hero{position:relative;z-index:1;text-align:center;padding:76px 20px 30px}
+  .eyebrow{font-family:var(--font-m);font-size:12px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 18px}
+  .starmark{width:74px;height:74px;margin:0 auto 22px;position:relative}
+  .starmark svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 14px var(--star))}
+  h1{font-family:var(--font-d);font-weight:600;letter-spacing:.01em;line-height:1.02;
+    font-size:clamp(34px,6.4vw,62px);margin:0;text-wrap:balance}
+  h1 .g{background:linear-gradient(100deg,var(--a1),var(--a2) 32%,var(--a3) 55%,var(--a4) 72%,var(--a5) 86%,var(--a6));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{max-width:62ch;margin:20px auto 0;font-size:clamp(15px,2.1vw,18px);color:var(--ink-soft)}
+  .lede b{color:var(--ink);font-weight:600}
+  .heronote{display:inline-flex;gap:9px;align-items:center;margin-top:26px;padding:9px 16px;
+    border:1px solid var(--line);border-radius:100px;background:color-mix(in srgb,var(--panel) 70%,transparent);
+    font-size:13px;color:var(--muted);backdrop-filter:blur(6px)}
+  .heronote .dot{width:7px;height:7px;border-radius:50%;background:#34c76a;box-shadow:0 0 8px #34c76a}
+
+  /* ===== LEGEND ===== */
+  .legend{display:flex;flex-wrap:wrap;gap:8px 6px;justify-content:center;align-items:center;
+    max-width:760px;margin:32px auto 4px}
+  .legend .seg{display:flex;align-items:center;gap:7px;font-family:var(--font-m);font-size:11px;
+    letter-spacing:.06em;color:var(--muted);padding:5px 11px;border-radius:100px;
+    border:1px solid var(--line-soft)}
+  .legend .chip{width:11px;height:11px;border-radius:3px}
+  .legend .arrow{color:var(--muted);opacity:.5;font-size:12px}
+
+  /* ===== ROADMAP ===== */
+  main{position:relative;z-index:1;padding:44px 0 40px}
+  .act{position:relative;margin:0 auto 8px;padding:14px 0 30px}
+  .act-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:20px 20px 6px;margin-bottom:6px}
+  .act-num{font-family:var(--font-m);font-size:12px;letter-spacing:.2em;color:var(--acc);
+    border:1px solid var(--acc);border-radius:6px;padding:3px 9px;background:var(--acc-t);white-space:nowrap}
+  .act-title{font-family:var(--font-d);font-weight:600;font-size:clamp(21px,3.4vw,29px);margin:0;
+    letter-spacing:.01em}
+  .act-title .mat{color:var(--acc)}
+  .act-sub{flex:1 1 240px;min-width:200px;color:var(--muted);font-size:13.5px;margin:0}
+
+  .nodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;padding:0 20px}
+
+  .node{position:relative;display:flex;flex-direction:column;gap:10px;text-align:left;
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:17px 17px 16px;
+    box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:transform .18s ease,
+    border-color .18s ease,box-shadow .18s ease;overflow:hidden}
+  .node::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--acc);
+    opacity:.75}
+  .node.link{cursor:pointer}
+  .node.link:hover{transform:translateY(-4px);border-color:var(--acc);
+    box-shadow:var(--shadow),0 0 0 1px var(--acc)}
+  .node.soon{opacity:.62}
+  .node.next{border-color:var(--acc);box-shadow:var(--shadow),0 0 0 1px var(--acc),0 0 26px var(--acc-t)}
+  .node.next::after{content:"";position:absolute;inset:-2px;border-radius:16px;pointer-events:none;
+    border:1.5px solid var(--acc);opacity:0;animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:0}50%{opacity:.55}}
+
+  .n-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .n-tier{font-family:var(--font-m);font-size:11px;letter-spacing:.14em;color:var(--acc);
+    text-transform:uppercase}
+  .status{font-family:var(--font-m);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 8px;border-radius:100px;white-space:nowrap;border:1px solid transparent}
+  .status.s-soon{color:var(--muted);border-color:var(--line)}
+  .status.s-next{color:#0a0d14;background:var(--acc);font-weight:700}
+  .status.s-live{color:var(--acc);border-color:var(--acc);background:var(--acc-t)}
+  .n-title{font-family:var(--font-d);font-weight:600;font-size:18px;line-height:1.15;margin:0;
+    letter-spacing:.01em}
+  .n-desc{font-size:13.2px;color:var(--ink-soft);margin:0}
+  .trick{display:flex;gap:8px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);
+    padding-top:10px;margin-top:2px}
+  .trick .b{color:var(--acc);font-weight:700;flex:none}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+  .chip-m{font-family:var(--font-m);font-size:10.5px;letter-spacing:.02em;color:var(--ink-soft);
+    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:6px;padding:3px 7px}
+  .go{font-size:12.5px;color:var(--acc);font-weight:600;display:inline-flex;align-items:center;gap:5px;
+    margin-top:2px}
+
+  /* connective spine */
+  .spine{position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);
+    background:linear-gradient(180deg,var(--a1),var(--a2) 22%,var(--a3) 44%,var(--a4) 64%,var(--a5) 82%,var(--a6));
+    opacity:.16;z-index:0}
+  @media (max-width:640px){.spine{display:none}}
+
+  /* ===== FOOTER ===== */
+  footer{position:relative;z-index:1;max-width:1120px;margin:20px auto 0;padding:30px 20px 60px}
+  .fcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 26px;
+    box-shadow:var(--shadow);display:grid;grid-template-columns:1.4fr 1fr;gap:26px}
+  @media (max-width:680px){.fcard{grid-template-columns:1fr}}
+  .fcard h3{font-family:var(--font-d);font-weight:600;font-size:19px;margin:0 0 10px;letter-spacing:.01em}
+  .fcard p{margin:0 0 10px;font-size:13.5px;color:var(--ink-soft)}
+  .fcard .k{color:var(--star);font-weight:600}
+  .how{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px}
+  .how li{display:flex;gap:11px;font-size:13px;color:var(--ink-soft)}
+  .how .st{font-family:var(--font-m);font-size:11px;color:var(--a3);border:1px solid var(--line);
+    border-radius:6px;height:22px;min-width:22px;display:grid;place-items:center;flex:none;margin-top:1px}
+  .sign{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;font-family:var(--font-m);
+    letter-spacing:.04em}
+  a.plain{color:var(--a3);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--a3) 40%,transparent)}
+  a.plain:hover{border-bottom-color:var(--a3)}
+
+  :focus-visible{outline:2px solid var(--a3);outline-offset:3px;border-radius:6px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .reveal{opacity:0;transform:translateY(14px)}
+  .reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
+</style>
+
+<canvas id="stars"></canvas>
+
+<header class="hero">
+  <p class="eyebrow">All the Mods 10 · To the Sky</p>
+  <div class="starmark" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><defs>
+      <radialGradient id="sg" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fff"/><stop offset="45%" stop-color="var(--star)"/>
+        <stop offset="100%" stop-color="var(--a1)"/></radialGradient></defs>
+      <path fill="url(#sg)" d="M50 4 58 34 88 30 64 50 88 70 58 66 50 96 42 66 12 70 36 50 12 30 42 34Z"/>
+      <circle cx="50" cy="50" r="9" fill="#fff" opacity=".9"/>
+    </svg>
+  </div>
+  <h1>Mapa de <span class="g">Progresión</span></h1>
+  <p class="lede">La guía que enseña a <b>combinar los mods</b> — no la mecánica suelta de cada uno,
+    sino cómo se conectan en <b>setups compactos</b> que evolucionan del arranque en el vacío
+    hasta la <b>ATM Star</b>. Cada nodo es un setup visual 3D, con los trucos que usa la gente
+    que de verdad domina el pack.</p>
+  <div class="heronote"><span class="dot"></span> Guárdate este link — es tu base. Vive en claude.ai, sobrevive a mundo nuevo o reinstalación.</div>
+</header>
+
+<div class="wrap">
+  <div class="legend" id="legend"></div>
+</div>
+
+<main>
+  <div class="spine"></div>
+  <div class="wrap" id="roadmap"></div>
+</main>
+
+<footer>
+  <div class="fcard">
+    <div>
+      <h3>Cómo leer este mapa</h3>
+      <p>Bajas del <span class="k">Acto I</span> (sobrevivir en el vacío) hasta el <span class="k">Acto VI</span>
+        (la ATM Star). El <b>color de cada acto es la progresión de materiales del pack</b>: cobre y redstone al
+        arrancar → latón y source → fluix digital → allthemodium → unobtainium → el brillo de la Star.</p>
+      <p>Cada nodo es un <b>setup</b>: qué construir, qué mods combina y el <b>truco</b> de experto que lo hace eficiente.
+        Vamos <b>uno por sesión</b>, con calma, con guía 3D interactiva — como la
+        <a class="plain" href="https://claude.ai/code/artifact/9f52ddc1-a4b7-4b9b-bac2-65ff5fd408fb" target="_blank" rel="noopener">guía de AE2</a> que ya tienes.</p>
+      <p style="color:var(--muted);font-size:12.5px">Los nodos se van encendiendo conforme los construimos. El
+        siguiente ya está marcado abajo. ✦</p>
+    </div>
+    <div>
+      <h3>El flujo</h3>
+      <ul class="how">
+        <li><span class="st">1</span><span>Leo tus misiones y el pack real para ver qué toca de verdad.</span></li>
+        <li><span class="st">2</span><span>Diseño el setup más compacto y te lo dibujo en 3D rotable, con tooltip por bloque.</span></li>
+        <li><span class="st">3</span><span>Lo construyes volando; me mandas captura y lo pulimos.</span></li>
+        <li><span class="st">4</span><span>El nodo queda "disponible" en este mapa, enlazado a su guía.</span></li>
+      </ul>
+    </div>
+  </div>
+  <p class="sign" id="sign">— tu coach de progresión · ATM10 Sky —</p>
+</footer>
+
+<script>
+/* ===================== DATOS DEL MAPA ===================== */
+const ACTS = [
+  { n:"Acto I", mat:"Cobre · Redstone", acc:"--a1", tint:"--a1-t",
+    title:"Arranque en el vacío",
+    sub:"Skyblock puro sobre Ex Deorum: sacar los primeros recursos de la nada, energía infinita gratis y todo pasivo desde el día uno.",
+    nodes:[
+      { tier:"Primer motor", title:"El goteo inicial", status:"soon",
+        desc:"Silkworms del tamiz → string → tu primera malla y tu tamiz de roble. El motor de recursos arranca aunque sea a mano.",
+        trick:"Pon silkworms sobre hojas: se comen la hoja y sueltan string sin parar. Con eso tejes tu primera malla.",
+        mods:["Ex Deorum"] },
+      { tier:"Recursos base", title:"Piedra → grava → arena → polvo", status:"soon",
+        desc:"Un cobble gen y un martillo: la cadena de trituración de donde sale TODO — el metal del tamiz y el polvo para la clay.",
+        trick:"Cada golpe de martillo baja un nivel: cobble→grava→arena→polvo. La grava tamizada ya te da tus primeros metales.",
+        mods:["Ex Deorum"] },
+      { tier:"Progresión oculta", title:"Clay y porcelana", status:"soon",
+        desc:"El paso que el libro no te explica: polvo + agua en un barril = clay. Y la clay abre toda la porcelana.",
+        trick:"Polvo + 1000mb de agua en el barril = clay. Cuécela → porcelana → buckets y crisoles que aguantan lava y agua de bruja.",
+        mods:["Ex Deorum"] },
+      { tier:"Energía ∞", title:"El motor infinito de poder", status:"soon",
+        desc:"Tu primera energía real, gratis y para siempre, combinando dos bloques básicos de mods distintos.",
+        trick:"Crisol caliente funde cobble → 250mb de lava c/u → cae a un Magmatic Generator de Generator Galore → RF infinita.",
+        mods:["Ex Deorum","Generator Galore"] },
+      { tier:"Todo pasivo", title:"Tamiz y martillo automáticos", status:"soon",
+        desc:"Con esa RF, olvídate de clickear: mecaniza el tamizado y el martilleo y recibe el drop solo.",
+        trick:"Ex Machinis Deorum da sieve y hammer con RF; la salida cae a un barril de Sophisticated Storage con imán y stack.",
+        mods:["Ex Machinis Deorum","Sophisticated Storage"] },
+      { tier:"Mejor fundición", title:"Hornos y prensado", status:"soon",
+        desc:"Exprime más de cada material antes de Mekanism: hornos de hierro con upgrades y el squeezer para líquidos.",
+        trick:"Un Iron Furnace con upgrades funde más rápido y gasta menos; el Squeezer de Integrated Dynamics saca tintes y líquidos de sobra.",
+        mods:["Iron Furnaces","Integrated Dynamics"] },
+      { tier:"Madera ∞", title:"Árboles productivos", status:"soon",
+        desc:"Madera, frutas y saplings infinitos sin talar a mano — la base de casi toda automatización posterior.",
+        trick:"Productive Trees + un cosechador básico de Create = leña y frutas pasivas para carbón vegetal, andamios y comida.",
+        mods:["Productive Trees","Create"] },
+    ]},
+  { n:"Acto II", mat:"Latón · Source", acc:"--a2", tint:"--a2-t",
+    title:"Automatización y magia útil",
+    sub:"Los secretos que un veterano usa desde temprano: doblar minerales sin química, loot sin matar, almacenamiento y minería pasivos, y el fin de la escasez.",
+    nodes:[
+      { tier:"Doblado temprano", title:"Create: ruedas trituradoras", status:"soon",
+        desc:"Antes de tocar Mekanism ya puedes casi duplicar minerales con Create puro.",
+        trick:"Mineral → ruedas trituradoras → mena triturada → lavado con ventilador + agua = nuggets extra. ~2x sin química.",
+        mods:["Create"] },
+      { tier:"Automatizar todo", title:"Create: brazo mecánico y contraptions", status:"soon",
+        desc:"El brazo, el deployer y las cintas automatizan cualquier cosa manual — incluido tu tamiz de roble.",
+        trick:"Un Deployer sostiene la azada y clickea tu malla en bucle; el brazo mecánico reparte entre cofres. Cero manos.",
+        mods:["Create"] },
+      { tier:"Loot pacífico", title:"Ars Nouveau: Drygmy", status:"soon",
+        desc:"Drops de mobs SIN matarlos y sin granja de spawn — el secreto que casi nadie usa al principio.",
+        trick:"Un Drygmy rodeado de mobs en jaulas genera su loot al Charm pasivamente. Cuero, pólvora, perlas… en seco.",
+        mods:["Ars Nouveau"] },
+      { tier:"Logística viva", title:"Ars Nouveau: Starbuncle y Whirlisprig", status:"soon",
+        desc:"Criaturas que mueven items y cosechan cultivos — logística y granja sin un solo tubo.",
+        trick:"El Starbuncle lleva items de A a B; el Whirlisprig cosecha y replanta un área. Combínalos con Mystical Agriculture.",
+        mods:["Ars Nouveau","Mystical Agriculture"] },
+      { tier:"Cofre infinito", title:"Occultism: almacenamiento dimensional", status:"soon",
+        desc:"Miles y miles de items dentro de UN bloque, baratísimo y muy temprano.",
+        trick:"El Storage Actuator de Occultism guarda tu inventario en la dimensión de un espíritu: capacidad enorme antes de tener AE2.",
+        mods:["Occultism"] },
+      { tier:"Mina pasiva", title:"Occultism: Dimensional Mineshaft", status:"soon",
+        desc:"Espíritus mineros que te traen minerales solos, sin quarry ni picar un bloque.",
+        trick:"Metes un Miner Spirit + su mina y suelta ores con el tiempo. Ores pasivos mucho antes del Digital Miner.",
+        mods:["Occultism"] },
+      { tier:"Fin de la escasez", title:"Mystical Agriculture", status:"soon",
+        desc:"Cultiva hierro, oro, diamante y hasta materiales ATM. El mod que rompe la economía del pack.",
+        trick:"Semillas de Inferium → sube esencias por tier. Riega con Ars y cosecha con Industrial Foregoing = recurso infinito 24/7.",
+        mods:["Mystical Agriculture","Industrial Foregoing"] },
+      { tier:"Drops sin mobs", title:"Hostile Neural Networks", status:"soon",
+        desc:"Fabrica drops de cualquier mob sin spawnear ni uno — cero lag, 100% automatizable.",
+        trick:"Entrena un Data Model matando pocos mobs → la Simulation Chamber predice → el Loot Fabricator imprime el drop con RF.",
+        mods:["Hostile Neural Networks"] },
+    ]},
+  { n:"Acto III", mat:"Fluix · Certus", acc:"--a3", tint:"--a3-t",
+    title:"Procesamiento y cerebro digital",
+    sub:"El corazón del pack: triplicar minerales con Mekanism, un almacenamiento que escala a millones y la red digital que lo une todo.",
+    nodes:[
+      { tier:"★ Siguiente setup", title:"Procesado de minerales Mekanism (hasta 3x)", status:"next",
+        desc:"La cadena que triplica tus lingotes: Crusher + Enrichment (2x) y Purification con oxígeno (3x). Compacto e integrable a AE2.",
+        trick:"El Electrolytic Separator parte agua en O₂/H₂: el oxígeno alimenta la Purification y ya tienes el 3x casi gratis.",
+        mods:["Mekanism","Sophisticated Storage"] },
+      { tier:"Química de soporte", title:"Los gases de Mekanism", status:"soon",
+        desc:"Oxígeno, hidrógeno, ácido y salmuera: la infraestructura química que alimenta el 3x hoy y el 5x mañana.",
+        trick:"Un solo Electrolytic Separator + tanques cubre todo el early de Mekanism. El H₂ además es combustible para generadores.",
+        mods:["Mekanism"] },
+      { tier:"Almacenamiento", title:"Sophisticated → Functional Storage", status:"soon",
+        desc:"La base física antes de lo digital: cajones que compactan y guardan millones, con un controlador central.",
+        trick:"Los cajones compactadores guardan lingote/bloque/nugget en una sola ranura; el Drawer Controller los vuelve un inventario.",
+        mods:["Functional Storage","Sophisticated Storage"] },
+      { tier:"Disponible", title:"Almacenamiento digital (AE2)", status:"live",
+        url:"https://claude.ai/code/artifact/9f52ddc1-a4b7-4b9b-bac2-65ff5fd408fb",
+        desc:"Tu red ME: importar la salida de Mekanism y las granjas al sistema digital. Ya tienes tu guía dedicada por fases.",
+        trick:"Un bus de importación en cada máquina y todo cae al ME sin tubos. Un canal por máquina, listo.",
+        mods:["Applied Energistics 2","MEGA Cells"] },
+      { tier:"Autocraft", title:"Autofabricación con AE2", status:"soon",
+        desc:"Pides el item y la red encadena todas las recetas sola, usando máquinas de otros mods.",
+        trick:"El proveedor de patrones empuja recetas a Mekanism/Create sin gastar canal extra. Pides un bloque, sale hecho.",
+        mods:["AE2","Mekanism","Create"] },
+      { tier:"Logística", title:"Qué tubo para qué", status:"soon",
+        desc:"La guía práctica: XNet, Pipez, LaserIO y Modular Routers. Cuándo brilla cada uno y cuándo no.",
+        trick:"LaserIO mueve items, fluidos y energía por el MISMO nodo con tarjetas — adiós a la maraña de tubos.",
+        mods:["XNet","LaserIO","Pipez","Modular Routers"] },
+      { tier:"Combo pro", title:"Applied Mekanistics", status:"soon",
+        desc:"Mete los químicos de Mekanism en AE2 como si fueran fluidos: cero tanques en toda tu base.",
+        trick:"Guardas oxígeno/hidrógeno en el ME; la Purification jala el gas de la red. El sistema entero se limpia de tanques.",
+        mods:["Applied Mekanistics","AE2","Mekanism"] },
+    ]},
+  { n:"Acto IV", mat:"Allthemodium · Vibranium", acc:"--a4", tint:"--a4-t",
+    title:"Poder industrial y metales ATM",
+    sub:"Energía a lo grande, ir por los metales legendarios, subir el procesado al 5x y automatización que ningún tubo puede hacer.",
+    nodes:[
+      { tier:"Energía masiva", title:"Reactor de fisión Mekanism", status:"soon",
+        desc:"Fission Reactor + Boiler + Turbina: RF de sobra para el resto del pack.",
+        trick:"La turbina saca vapor del reactor y Flux Networks reparte la energía sin un solo cable (como ya tienes montado).",
+        mods:["Mekanism Generators","Flux Networks"] },
+      { tier:"Rutas de poder", title:"Powah y Extreme Reactors", status:"soon",
+        desc:"Alternativas más simples o más grandes según lo que te guste montar.",
+        trick:"El Powah endgame es pasivo y limpio; Extreme Reactors escala brutal. Ambos se enchufan a Flux igual que el de fisión.",
+        mods:["Powah","Extreme Reactors"] },
+      { tier:"Metales legendarios", title:"Allthemodium, Vibranium, Unobtainium", status:"soon",
+        desc:"Los metales del endgame: dónde están, qué pico necesitas por tier y cómo llegar a cada uno.",
+        trick:"Allthemodium en Nether/mina ATM, vibranium en el End, unobtainium en el Other. Cada tier necesita el pico del anterior.",
+        mods:["Allthemodium"] },
+      { tier:"Minado a distancia", title:"Mekanism Digital Miner", status:"soon",
+        desc:"Minería por filtro sin picar: le dices qué mineral y él excava un área enorme solo.",
+        trick:"Config el Digital Miner con 'allthemodium' + auto-eject al ME: ores ATM directos a tu almacenamiento, en piloto automático.",
+        mods:["Mekanism","AE2"] },
+      { tier:"Procesado 5x", title:"Cadena completa 4x → 5x", status:"soon",
+        desc:"La evolución del setup estrella: Injection (4x, ácido) + Dissolution & Crystallizer (5x) + evaporación.",
+        trick:"La Thermal Evaporation Plant convierte agua en brine → lithium: la base química del 5x y de medio endgame de Mekanism.",
+        mods:["Mekanism"] },
+      { tier:"Automatización flexible", title:"PneumaticCraft: drones", status:"soon",
+        desc:"Drones programables que hacen tareas que ningún tubo puede: la automatización más versátil del pack.",
+        trick:"Programas un dron con 've, mina, trae, planta' por widgets. Un enjambre de drones reemplaza decenas de máquinas.",
+        mods:["PneumaticCraft"] },
+    ]},
+  { n:"Acto V", mat:"Unobtainium · Estelar", acc:"--a5", tint:"--a5-t",
+    title:"Alta tecnología",
+    sub:"Las cúspides de poder y las líneas tech paralelas: fusión, Draconic, Modern Industrialization y abejas que producen metales ATM.",
+    nodes:[
+      { tier:"Línea paralela", title:"Modern Industrialization", status:"soon",
+        desc:"Un árbol tech completo y aparte: vapor → eléctrico → digital. Otra forma de llegar al endgame.",
+        trick:"MI trae su propio ore-processing y aleaciones; muchos expertos lo corren en paralelo a Mekanism para no hacer cuello de botella.",
+        mods:["Modern Industrialization"] },
+      { tier:"Otra rama", title:"Oritech", status:"soon",
+        desc:"Mod industrial alterno con máquinas propias — opcional, para variar el estilo de juego.",
+        trick:"Oritech tiene su propia cadena de energía y procesado; útil si quieres diversificar y no depender de un solo mod.",
+        mods:["Oritech"] },
+      { tier:"Poder de fusión", title:"Mekanism Fusion Reactor", status:"soon",
+        desc:"Deuterio + Tritio: el salto de energía que alimenta el endgame de verdad.",
+        trick:"Arrancas la fusión con calor (láser o combustible) y luego se autoalimenta con D-T de la evaporación. RF casi ilimitada.",
+        mods:["Mekanism Generators"] },
+      { tier:"Cúspide de poder", title:"Draconic Evolution", status:"soon",
+        desc:"Energy Core y Awakened Draconium: almacenamiento y herramientas del tope del pack.",
+        trick:"Un Energy Core guarda miles de millones de RF: tu batería para el pico de consumo al craftear la Star.",
+        mods:["Draconic Evolution"] },
+      { tier:"Abejas ATM", title:"Productive Bees a full", status:"soon",
+        desc:"Abejas que producen materiales ATM y raros — lo que ya haces con tu amigo, llevado al máximo.",
+        trick:"Cría abejas de allthemodium/vibranium: producción pasiva de metales endgame sin minar ni un bloque.",
+        mods:["Productive Bees"] },
+    ]},
+  { n:"Acto VI", mat:"ATM Star", acc:"--a6", tint:"--a6-t",
+    title:"El gran final",
+    sub:"Todo lo que armaste converge aquí: reunir los componentes de la Star, dejar que las granjas la fabriquen sola, y el pulido del endgame.",
+    nodes:[
+      { tier:"Reunir piezas", title:"Los componentes de la ATM Star", status:"soon",
+        desc:"La Star pide toneladas de cada mod. Aquí ves el árbol completo de lo que hay que fabricar.",
+        trick:"Casi todo ya lo produces pasivo de los actos anteriores: es cuestión de dejar que las granjas llenen el ME.",
+        mods:["ATM Star","Todos los mods"] },
+      { tier:"El gran final", title:"Automatizar la ATM Star", status:"soon",
+        desc:"TODO se conecta: granjas pasivas + AE2 autocrafteando el árbol entero de la Star.",
+        trick:"Pones la Star como patrón de crafteo y la red fabrica cada componente en cadena. Pulsas 'craft' y esperas.",
+        mods:["AE2","Todos los mods"] },
+      { tier:"Calidad de vida", title:"El pulido endgame", status:"soon",
+        desc:"Wireless total, jetpacks, building gadgets y Pylons: lo que hace el endgame cómodo.",
+        trick:"Terminal wireless de AE2 + jetpack de Mekanism + Building Gadgets = construyes y accedes a todo desde cualquier lado.",
+        mods:["AE2","Mekanism","Pylons"] },
+    ]},
+];
+
+/* ===================== RENDER ===================== */
+const STAT = {
+  soon:{cls:"s-soon", label:"Próximamente"},
+  next:{cls:"s-next", label:"Siguiente ✦"},
+  live:{cls:"s-live", label:"Disponible ↗"},
+};
+const rm = document.getElementById('roadmap');
+ACTS.forEach(act=>{
+  const sec=document.createElement('section');
+  sec.className='act reveal';
+  sec.style.setProperty('--acc',`var(${act.acc})`);
+  sec.style.setProperty('--acc-t',`var(${act.tint})`);
+  const nodes=act.nodes.map(nd=>{
+    const s=STAT[nd.status];
+    const isLink=nd.status==='live'&&nd.url;
+    const tag=isLink?'a':'div';
+    const attrs=isLink?`href="${nd.url}" target="_blank" rel="noopener"`:'';
+    const cls=`node ${nd.status==='live'?'link':''} ${nd.status==='soon'?'soon':''} ${nd.status==='next'?'next':''}`;
+    const chips=nd.mods.map(m=>`<span class="chip-m">${m}</span>`).join('');
+    const go=isLink?`<span class="go">Abrir guía ↗</span>`:'';
+    return `<${tag} class="${cls}" ${attrs}>
+      <div class="n-top"><span class="n-tier">${nd.tier}</span>
+        <span class="status ${s.cls}">${s.label}</span></div>
+      <h3 class="n-title">${nd.title}</h3>
+      <p class="n-desc">${nd.desc}</p>
+      <div class="trick"><span class="b">TRUCO</span><span>${nd.trick}</span></div>
+      <div class="chips">${chips}</div>${go}
+    </${tag}>`;
+  }).join('');
+  sec.innerHTML=`
+    <div class="act-head">
+      <span class="act-num">${act.n}</span>
+      <h2 class="act-title">${act.title} · <span class="mat">${act.mat}</span></h2>
+      <p class="act-sub">${act.sub}</p>
+    </div>
+    <div class="nodes">${nodes}</div>`;
+  rm.appendChild(sec);
+});
+
+/* legend */
+const leg=document.getElementById('legend');
+const segs=[["--a1","Cobre"],["--a2","Energía"],["--a3","Fluix"],["--a4","Allthemodium"],["--a5","Unobtainium"],["--a6","ATM Star"]];
+leg.innerHTML=segs.map((s,i)=>
+  `<span class="seg"><span class="chip" style="background:var(${s[0]})"></span>${s[1]}</span>`
+  +(i<segs.length-1?'<span class="arrow">→</span>':'')
+).join('');
+
+/* reveal on scroll */
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===================== STARFIELD ===================== */
+(function(){
+  const c=document.getElementById('stars'),x=c.getContext('2d');
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let w,h,dpr,stars=[];
+  function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+  function resize(){
+    dpr=Math.min(devicePixelRatio||1,2);
+    w=c.width=innerWidth*dpr;h=c.height=innerHeight*dpr;
+    c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';
+    const n=Math.round(innerWidth*innerHeight/9000);
+    stars=Array.from({length:n},()=>({
+      x:Math.random()*w,y:Math.random()*h,r:(Math.random()*1.1+.25)*dpr,
+      a:Math.random()*.5+.15,tw:Math.random()*Math.PI*2,sp:Math.random()*.6+.2,
+      vy:(Math.random()*.12+.02)*dpr }));
+  }
+  function frame(t){
+    x.clearRect(0,0,w,h);
+    const dark=css('--star')==='#ffcf4a'||matchMedia('(prefers-color-scheme:dark)').matches&&!document.documentElement.dataset.theme;
+    const col=(document.documentElement.dataset.theme==='light')?'20,30,60':'200,214,240';
+    for(const s of stars){
+      const a=s.a*(reduce?1:(.55+.45*Math.sin(t*0.001*s.sp+s.tw)));
+      x.beginPath();x.arc(s.x,s.y,s.r,0,6.283);
+      x.fillStyle=`rgba(${col},${a})`;x.fill();
+      if(!reduce){s.y+=s.vy;if(s.y>h)s.y=0;}
+    }
+    if(!reduce)requestAnimationFrame(frame);
+  }
+  resize();addEventListener('resize',resize);
+  if(reduce){requestAnimationFrame(frame);}else requestAnimationFrame(frame);
+})();
+</script>
