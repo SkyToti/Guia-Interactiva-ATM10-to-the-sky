@@ -112,6 +112,7 @@
   .fine b{color:var(--ink-soft)}
   img[data-tex="water"]{filter:brightness(.6) sepia(1) hue-rotate(178deg) saturate(4.5)}
   img[data-tex="oak_leaves"]{filter:sepia(1) hue-rotate(60deg) saturate(2.2) brightness(.85)}
+  img.ww{filter:brightness(.55) sepia(1) hue-rotate(215deg) saturate(2.6)!important}
 
   .scene{margin:22px 0 6px;background:
       radial-gradient(120% 90% at 50% 0%, color-mix(in srgb,var(--acc) 8%, var(--panel)), var(--panel));
@@ -125,6 +126,16 @@
   .tip.on{opacity:1}
   .tip b{display:block;font-family:var(--font-d);font-size:13.5px;color:var(--acc2)}
   .tip i{display:block;font-style:normal;color:#aab3c9;font-size:11.5px;margin-top:2px}
+  .pbar{position:absolute;top:10px;left:10px;z-index:6;display:flex;gap:6px}
+  .pbar button{font-family:var(--font-m);font-size:12px;color:var(--ink);
+    background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--acc);
+    border-radius:8px;padding:6px 12px;cursor:pointer;backdrop-filter:blur(4px);transition:.13s}
+  .pbar button:hover{background:var(--acc);color:#fff}
+  .pcap{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:6;max-width:88%;
+    background:rgba(12,15,24,.92);color:#fff;border:1px solid var(--acc);border-radius:10px;
+    padding:8px 14px;font-size:13px;line-height:1.45;opacity:0;transition:opacity .25s;
+    pointer-events:none;text-align:center}
+  .pcap.on{opacity:1}
   .ctrls{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:11px;border-top:1px solid var(--line-soft);
     background:var(--panel-2)}
   .ctrls button{font-family:var(--font-m);font-size:12px;color:var(--ink-soft);background:var(--panel);
@@ -185,6 +196,7 @@
     <b>energía infinita</b>. Es el camino de alguien que ya se pasó el pack mil veces.</p>
   <div class="howto">
     <span>🖱️ Arrastra las escenas 3D para girarlas</span>
+    <span>▶️ Botón "Construir": cada setup se arma solo, paso a paso, explicado</span>
     <span>👆 Pasa el cursor por un bloque y te dice cuál es</span>
     <span>⌨️ En el juego: tecla K = combinar items compatibles al instante</span>
   </div>
@@ -485,19 +497,25 @@
     </div>
 
     <div class="vars">
-      <div class="var"><div class="pair"><img data-tex="barrel_side" alt="" title="witch water"><img data-tex="lava" alt=""></div>
+      <div class="var"><div class="pair"><img data-tex="water" class="ww" alt="agua de bruja"><img data-tex="lava" alt=""></div>
         <span class="eq">→</span><div class="res"><img data-tex="netherrack" alt=""><small>Netherrack</small></div></div>
-      <div class="var"><div class="pair"><img data-tex="glowstone" alt=""><img data-tex="lava" alt=""></div>
-        <span class="eq">→</span><div class="res"><img data-tex="end_stone" alt=""><small>End Stone</small></div></div>
-      <div class="var"><div class="pair"><img data-tex="water" alt=""><img data-tex="lava" alt=""></div>
+      <div class="var"><div class="pair"><img data-tex="lava" alt=""><img data-tex="water" class="ww" alt="agua de bruja"></div>
+        <span class="eq">→</span><div class="res"><img data-tex="deepslate" alt="" style="filter:brightness(.55)"><small>Blackstone ★</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="lava" alt=""><img data-tex="water" alt=""></div>
         <span class="eq">→</span><div class="res"><img data-tex="obsidian" alt=""><small>Obsidiana</small></div></div>
-      <div class="var"><div class="pair"><img data-tex="sand" alt=""><img data-tex="barrel_side" alt="" title="witch water"></div>
+      <div class="var"><div class="pair"><img data-tex="water" alt=""><img data-tex="lava" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="cobblestone" alt="" style="filter:brightness(1.15) saturate(.5)"><small>Piedra</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="lava" alt=""><img data-tex="glowstone" alt=""></div>
+        <span class="eq">→</span><div class="res"><img data-tex="end_stone" alt=""><small>End Stone</small></div></div>
+      <div class="var"><div class="pair"><img data-tex="water" class="ww" alt="agua de bruja"><img data-tex="sand" alt=""></div>
         <span class="eq">→</span><div class="res"><img data-tex="soul_sand" alt=""><small>Soul Sand</small></div></div>
       <div class="var"><div class="pair"><img data-tex="water" alt=""><img data-tex="milk" alt=""></div>
         <span class="eq">→</span><div class="res"><img data-tex="slime" alt=""><small>Slime</small></div></div>
     </div>
-    <p class="fine">Los pares muestran el fluido base del barril + lo que le echas/mezclas. El barril
-      con textura de madera en los pares = <b>agua de bruja</b> dentro. Para recetas con lava usa un
+    <p class="fine"><b>Cómo leerlo:</b> izquierda = el fluido que está DENTRO del barril · derecha = lo
+      que le echas. El agua morada = <b>agua de bruja</b>. Fíjate en el par estrella: <b>netherrack y
+      blackstone usan los mismos dos fluidos, pero INVERTIDOS</b> — barril de bruja + echar lava =
+      netherrack; barril de lava + echar bruja = blackstone. Para todo lo que lleve lava dentro usa un
       <b>barril de PIEDRA</b> (tu piedra de guijarros) — los de madera se queman.</p>
 
     <ul class="clean">
@@ -508,6 +526,12 @@
         ojos, chorus</b>… el End por correo.</span></li>
       <li><span class="b">→</span><span><b>Soul sand</b> tamizada (malla hierro+) = <b>Prosperity
         Shards</b> para Mystical Agriculture — apunta directo al Acto II.</span></li>
+      <li><span class="b">→</span><span><b>Blackstone</b> martillada + tamizada da cosas del Nether
+        (magma, tinte negro) y con suerte <b>Ancient Debris</b>; con mallas altas suelta
+        <b>allthemodium e isneium</b>. Empieza a acumularla desde YA.</span></li>
+      <li><span class="b">→</span><span>El <b>basalto</b> (hielo azul + lava) y el <b>deepslate</b>
+        (hielo compacto + lava) no salen del barril: salen del <b>Generador de Bloques</b> del
+        siguiente paso.</span></li>
     </ul>
   </section>
 
@@ -580,10 +604,29 @@
     <div class="note"><b>Las conexiones — esto es lo que casi nadie te dice:</b> el cobble entra al
       crisol <b>por arriba</b> (un <b>hopper</b> desde el cajón del generador basta). El crisol guarda
       la lava como <b>fluido</b>, y el Magmatic Generator <b>no la jala solo</b>: necesitas una
-      <b>Tubería de Fluidos de Pipez</b> — la más barata del pack: <b>3 hierro + 2 cubetas +
-      1 redstone = 16 tuberías</b>. Conéctala del crisol al generador y pon la conexión del lado del
-      crisol en modo <b>Extract</b>. Pipez va a ser tu navaja suiza: items, fluidos y energía, todas
-      igual de baratas.</div>
+      <b>Tubería de Fluidos de Pipez</b>. Pipez va a ser tu navaja suiza: items, fluidos, energía y
+      gas, todas igual de baratas.</div>
+
+    <div class="recipes">
+      <div class="rec">
+        <h4>Tubería de Fluidos ×16</h4><p class="out">pipez:fluid_pipe · la tubería early por excelencia</p>
+        <div class="craft"><div class="grid3" data-recipe="fpipe"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="pipe_fluid" alt=""></div><small>×16</small></div></div>
+      </div>
+      <div class="rec">
+        <h4>La Llave (Wrench)</h4><p class="out">pipez:wrench · 2 flint + 2 palos. Hazla YA.</p>
+        <div class="craft"><div class="grid3" data-recipe="wrench"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="i_wrench" alt=""></div><small>Llave</small></div></div>
+      </div>
+    </div>
+
+    <div class="trick"><span class="k">LA LLAVE</span>
+      <p><b>Una tubería recién puesta NO jala nada.</b> Cada conexión tiene modo, y se cambia
+      <b>clickeando la conexión con la Llave</b>: por defecto solo <i>recibe/pasa</i>; márcala como
+      <b>EXTRACT</b> en la punta que debe JALAR (se le ve una pieza distinta en la tubería, la "banda").
+      Regla mental: <b>Extract va del lado del tanque/cofre de ORIGEN</b> — aquí, del lado del crisol.
+      En la escena de arriba está dibujada como la banda naranja. Shift+click con la llave desconecta
+      esa cara por completo.</p></div>
 
     <div class="note"><b>El arranque del huevo y la gallina:</b> el crisol necesita <b>calor debajo</b>
       para fundir (antorcha ×1, lava ×3, fuego ×5). Tu primera lava: funde <b>netherrack</b> del Paso 7
@@ -591,9 +634,11 @@
       sistema se sostiene solo.</div>
 
     <div class="trick"><span class="k">ESCALA</span>
-      <p>Los generadores <b>8× y 64×</b> de Generator Galore producen mucho más pero <b>consumen
-      más lava</b> — añade más crisoles antes de subir de tier, o el cuello de botella será fundir,
-      no generar.</p></div>
+      <p>Generator Galore tiene toda una <b>línea de generadores</b> (el Magmatic viene de mejorar el
+      de obsidiana) y cada uno tiene versión <b>8×</b> y <b>64×</b>: el 8× se craftea con <b>8
+      Magmatic Generators alrededor de un Echo Shard</b> (que sale de tamizar end stone triturada con
+      malla alta — cap. 2). Producen mucho más pero <b>consumen más lava</b>: añade crisoles antes de
+      subir de tier, o tu cuello de botella será fundir, no generar.</p></div>
   </section>
 
   <!-- PASO 9 -->
@@ -601,22 +646,36 @@
     <div class="step-h"><div class="step-n">9</div><div>
       <span class="tag">Cierra el bucle · hazlo 100% pasivo</span>
       <h2>Que las máquinas trabajen por ti</h2></div></div>
-    <p class="lead">Ya tienes energía. Ahora usa esa RF para <b>dejar de clickear</b>. El propio
-      <b>Ex Deorum</b> trae las máquinas (y <b>Ex Machinis</b> añade las versiones "Flux", aún más
-      rápidas, para después):</p>
+    <p class="lead">Ya tienes energía. Ahora usa esa RF para <b>dejar de clickear</b>. En este pack
+      las máquinas son el <b>Flux Hammer</b> y el <b>Flux Sieve</b> de Ex Machinis (el pack
+      <b>deshabilitó</b> las "Mechanical" de Ex Deorum — no las busques en JEI). Y lo elegante:
+      <b>sus entradas y salidas están pensadas para NO usar tuberías de items</b>:</p>
 
     <ul class="clean">
-      <li><span class="b">→</span><span>El <b>Mechanical Hammer</b> tritura con FE. Truco del propio
-        mod: <b>ponle un martillo en su slot y va al doble</b>; con eficiencia encantada, más
-        todavía.</span></li>
-      <li><span class="b">→</span><span>El <b>Mechanical Sieve</b> cierne con FE — necesita su
-        <b>malla</b> en el slot, igual que el manual.</span></li>
-      <li><span class="b">→</span><span>Entre máquinas, <b>Tuberías de Items de Pipez</b> (modo Extract
-        en la salida). La energía llega a los bloques <b>adyacentes</b> al generador; si están lejos,
-        <b>Tubería de Energía</b>.</span></li>
-      <li><span class="b">→</span><span>Al final, un <b>barril de Sophisticated Storage</b> con
-        <b>Compacting Upgrade</b>: tu producción se guarda ya compactada.</span></li>
+      <li><span class="b">→</span><span>El <b>Flux Hammer</b> martilla con FE, sin gastar durabilidad,
+        y <b>escupe el resultado al inventario que tenga DETRÁS</b> (el lado abierto; la rueda queda a
+        la derecha de la salida). El truco oficial del mod: <b>ponle un Flux Sieve justo detrás</b> y
+        la grava cae directo adentro.</span></li>
+      <li><span class="b">→</span><span>El <b>Flux Sieve</b> cierne con FE + su <b>malla</b> en el
+        slot; recibe bloques por cualquier cara y <b>deposita todo al inventario de DEBAJO</b>.</span></li>
+      <li><span class="b">→</span><span>Debajo del sieve: tu <b>barril de Sophisticated</b> con
+        <b>Compacting Upgrade</b> — la producción se guarda ya compactada.</span></li>
+      <li><span class="b">→</span><span>Ambos aceptan <b>upgrades de oro/diamante/netherite</b> (hasta
+        3): más velocidad y más items por operación.</span></li>
     </ul>
+
+    <div class="recipes">
+      <div class="rec">
+        <h4>Flux Hammer</h4><p class="out">exmachinis:flux_hammer · paneles + martillo de DIAMANTE + hopper + 2 bloques de hierro</p>
+        <div class="craft"><div class="grid3" data-recipe="fhammer"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="flux_hammer_box" alt=""></div><small>Flux<br>Hammer</small></div></div>
+      </div>
+      <div class="rec">
+        <h4>Flux Sieve</h4><p class="out">exmachinis:flux_sieve · barrotes + un tamiz + hopper + 2 bloques de hierro</p>
+        <div class="craft"><div class="grid3" data-recipe="fsieve"></div><span class="arrow">→</span>
+          <div class="result"><div class="slot"><img data-tex="flux_sieve" alt=""></div><small>Flux<br>Sieve</small></div></div>
+      </div>
+    </div>
 
     <div class="scene">
       <div class="stage" id="scene3"></div>
@@ -626,9 +685,9 @@
         <button data-act="zout">Zoom −</button><button data-act="reset">Reset</button>
       </div>
     </div>
-    <p class="cap">La línea del frente: <b>Mechanical Hammer → tubería de items → Mechanical Sieve →
-      tubería de items → Barril</b>. Detrás: el <b>Magmatic Generator</b> con <b>tuberías de energía</b>.
-      Nada está "pegado por magia": cada conexión es una tubería.</p>
+    <p class="cap">Dale a <b>▶ Construir</b> y míralo armarse: <b>Flux Hammer → Flux Sieve detrás →
+      barril DEBAJO del sieve</b> — cero tuberías de items, así lo diseñó el mod. Solo la energía
+      viaja: el generador pegado al sieve y una <b>Tubería de Energía</b> por atrás hasta el hammer.</p>
 
     <div class="trick"><span class="k">EL CIERRE</span>
       <p>El bucle completo: la <b>RF</b> mueve las máquinas → procesan <b>bloques</b> → alimentan el
@@ -652,10 +711,10 @@
       <li><b>Cadena del martillo:</b> cobble→grava→arena→polvo, y su versión comprimida ×9.</li>
       <li><b>Minerales 2×:</b> chunks (tecla K) → raw ore → Ore Hammer = 2 polvos → Iron Furnace. Squeezer para el extra.</li>
       <li><b>Porcelana:</b> polvo+agua→clay; clay+bonemeal→porcelain; moldear y COCER el crisol.</li>
-      <li><b>Alquimia de barril:</b> agua de bruja (barril sobre mycelium), netherrack, end stone, obsidiana, soul sand, slime.</li>
+      <li><b>Alquimia de barril:</b> agua de bruja (barril sobre mycelium), netherrack, <b>blackstone</b> (los mismos fluidos, invertidos), end stone, obsidiana, soul sand, slime.</li>
       <li><b>Generador de cobble:</b> agua | gen | lava, almacenamiento ENCIMA, modifier DEBAJO.</li>
       <li><b>Motor infinito:</b> hopper → crisol (calor) → tubería de fluidos Pipez → Magmatic = RF ∞.</li>
-      <li><b>Pasivo:</b> Mechanical Hammer + Sieve con tuberías de items y energía → barril compactador.</li>
+      <li><b>Pasivo:</b> Flux Hammer → Flux Sieve detrás → barril compactador DEBAJO (cero tuberías de items; solo energía). Llave de Pipez para marcar los Extract.</li>
     </ol>
   </div>
 

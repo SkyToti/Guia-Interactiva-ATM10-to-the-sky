@@ -62,6 +62,7 @@ function buildScene(id, boxes, opt){
   const stage = document.getElementById(id);
   if(!stage) return null;
   const bx = expand(boxes);
+  const reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const cv = document.createElement("canvas");
   cv.style.display = "block";
@@ -73,7 +74,58 @@ function buildScene(id, boxes, opt){
   tip.className = "tip";
   stage.appendChild(tip);
 
-  const st = {yaw: opt.spin ?? -34, pitch: opt.tilt ?? 30, zoom: opt.zoom ?? 1};
+  const st = {yaw: opt.spin ?? -34, pitch: opt.tilt ?? 30, zoom: opt.zoom ?? 1, visCount: Infinity};
+
+  /* ---- modo constructor (estilo Ponder de Create) ---- */
+  const steps = opt.steps || null;
+  const cum = [];               // conteo acumulado de cajas lógicas por paso
+  if(steps){ let a=0; steps.forEach(s=>{ a+=s.n; cum.push(a); }); }
+  const birth = new Map();      // índice lógico -> timestamp de aparición
+  let stepIdx = -1, playTimer = 0, playing = false;
+  let pbar=null, pcap=null, playBtn=null, nextBtn=null;
+
+  function setStep(i, animate){
+    if(!steps) return;
+    const prev = stepIdx < 0 ? 0 : cum[stepIdx];
+    stepIdx = i;
+    if(i < 0){ st.visCount = Infinity; pcap.classList.remove("on"); }
+    else{
+      st.visCount = cum[i];
+      if(animate && !reduceMotion){
+        const from = (i===0) ? 0 : cum[i-1];
+        const t = performance.now();
+        for(let k=from;k<cum[i];k++) birth.set(k, t);
+      }
+      pcap.textContent = (i+1)+"/"+steps.length+" · "+steps[i].cap;
+      pcap.classList.add("on");
+    }
+    nextBtn.textContent = (i>=0 && i===steps.length-1) ? "✓ Ver completo" : "Siguiente ›";
+    pickDirty = true; redraw();
+  }
+  function stopPlay(){ playing=false; if(playTimer){clearTimeout(playTimer); playTimer=0;} playBtn.textContent="▶ Construir"; }
+  function advance(){
+    if(stepIdx >= (steps?steps.length-1:0)){ stopPlay(); return; }
+    setStep(stepIdx+1, true);
+    if(playing) playTimer = setTimeout(advance, 1600 + (steps[stepIdx].cap.length*18));
+  }
+  if(steps){
+    pbar = document.createElement("div"); pbar.className="pbar";
+    playBtn = document.createElement("button"); playBtn.textContent="▶ Construir";
+    nextBtn = document.createElement("button"); nextBtn.textContent="Siguiente ›";
+    pbar.appendChild(playBtn); pbar.appendChild(nextBtn); stage.appendChild(pbar);
+    pcap = document.createElement("div"); pcap.className="pcap"; stage.appendChild(pcap);
+    playBtn.addEventListener("click", ()=>{
+      if(playing){ stopPlay(); return; }
+      playing = true; playBtn.textContent = "⏸ Pausa";
+      stepIdx = -1; setStep(0, true);
+      playTimer = setTimeout(advance, 1600 + steps[0].cap.length*18);
+    });
+    nextBtn.addEventListener("click", ()=>{
+      stopPlay();
+      if(stepIdx>=0 && stepIdx===steps.length-1) setStep(-1,false);
+      else setStep(stepIdx+1, true);
+    });
+  }
 
   const cxs=bx.map(b=>b.cx), cys=bx.map(b=>b.cy), czs=bx.map(b=>b.cz);
   const ctr = {
@@ -114,12 +166,21 @@ function buildScene(id, boxes, opt){
       return {b, d: Y*sp + (-X*sy + Z*cy)*cp};
     }).sort((a,b)=>a.d-b.d);
 
+    const now = performance.now();
+    let animating = false;
     for(const it of order){
       const b = it.b;
+      if(b.o >= st.visCount) continue;               // aún no construido (modo paso a paso)
+      let k = 1;                                     // escala de aparición (pop-in)
+      if(birth.has(b.o)){
+        const t = (now - birth.get(b.o)) / 280;
+        if(t >= 1) birth.delete(b.o);
+        else { k = 0.35 + 0.65*(1-Math.pow(1-t,3)); animating = true; }
+      }
       const X=b.cx-ctr.x, Y=b.cy-ctr.y, Z=b.cz-ctr.z;
       const idc = pickMode ? idColor(b.group+1) : null;
       for(const f of vis){
-        const p = f.c.map(c=>P(X+c[0]*b.hx, Y+c[1]*b.hy, Z+c[2]*b.hz));
+        const p = f.c.map(c=>P(X+c[0]*b.hx*k, Y+c[1]*b.hy*k, Z+c[2]*b.hz*k));
         if(pickMode){ flat(c2, p[0],p[1],p[2], idc); continue; }
         const img = IMG[texKey(b,f.k)];
         if(!img || !img.complete || !img.naturalWidth) continue;
@@ -127,6 +188,7 @@ function buildScene(id, boxes, opt){
       }
     }
     c2.setTransform(1,0,0,1,0,0);
+    return animating;
   }
   function quad(c2, img, P0,P1,P3, dark, tint){
     const iw=img.naturalWidth, ih=img.naturalHeight;
@@ -153,7 +215,12 @@ function buildScene(id, boxes, opt){
 
   function redraw(){
     if(raf) return;
-    raf = requestAnimationFrame(()=>{ raf=0; if(!cv.width) return; paint(ctx, DPR, cv.width/2, cv.height/2, false); pickDirty=true; });
+    raf = requestAnimationFrame(()=>{
+      raf=0; if(!cv.width) return;
+      const animating = paint(ctx, DPR, cv.width/2, cv.height/2, false);
+      pickDirty=true;
+      if(animating) redraw();          // sigue el pop-in hasta terminar
+    });
   }
   function ensurePick(){ if(!pickDirty || !pick.width) return; paint(pctx, 1, pick.width/2, pick.height/2, true); pickDirty=false; }
 
